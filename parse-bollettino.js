@@ -10,11 +10,15 @@ let fn = process.argv[2];
 const $ = cheerio.load(fs.readFileSync(fn));
 
 let article = $('div.article-body');
+
+let breaks = $('br', article)
+breaks.after("<span>\n</span>")
+
 let lines = article.text().split("\n");
 
 let area_regex = /^[a-zA-Z ]*:[0-9 ]*$/;
-let nome_comune_regex = /[a-zA-z ]*/;
-let dato_comune_regex = / [0-9]+/;
+let nome_comune_regex = /[a-zA-Z ’.]+/;
+let dato_comune_regex = /[0-9]+/;
 
 // TODO parametrize
 const today_date = "2020-03-25";
@@ -25,7 +29,7 @@ dizionario_comuni = {};
 tabella_comuni = [];
 
 function is_area(line) {
-	return (line.search(area_regex) != -1) && 
+	return (line.trim().search(area_regex) != -1) && 
 			!(line.includes("Attachments"))
 }
 
@@ -40,14 +44,16 @@ for (var i = 0; i < lines.length; i++) {
 				"total":  lines[i].split(":")[1].trim(),
 				"comuni": {}
 			}
-			//console.log("AREA: "+area);
+			// console.log("AREA: "+area);
 		};
+
 		if (lin.match(/^Comuni/)) {
 			
 			pre_dati_comuni = lin
 								.split(":")[1] // removes the 'Comuni :' part
 								.trim()        // cleanup
-								.replace(";", ","); // workaround for typos
+								.replace(";", ",") // workaround for typos
+								.replace(".", " "); // workaround for typos
 			
 			//console.log("== Linea comuni: " + pre_dati_comuni);
 			dati_comuni = pre_dati_comuni.split(",");
@@ -57,11 +63,24 @@ for (var i = 0; i < lines.length; i++) {
 				
 				coppia = my_dato.split(" ");
 				if ( coppia.length >= 2 ) {
-					//console.log("==== '" + my_dato+"'");
-					nome_comune = my_dato.match(nome_comune_regex)[0].trim();
-					dato_comune = my_dato.match(dato_comune_regex)[0].trim();
+					// console.log("==== '" + my_dato+"'");
+
+					parse_nome_comune = my_dato.match(nome_comune_regex)
+					parse_dato_comune = my_dato.match(dato_comune_regex)
+
+					if (parse_nome_comune === null || parse_dato_comune === null){
+						console.error("Cannot parse line: '" + my_dato +"' (file: " + fn + ")" )
+						continue;
+					}
+
+					nome_comune = parse_nome_comune[0].trim();
+					dato_comune = parse_dato_comune[0].trim();
 
 					//console.log("====== '"+nome_comune+"' : '"+dato_comune+"'")
+					if (!dizionario_comuni[area]) {
+						console.error("Area is not set, comune: " + nome_comune + " (file: " + fn + ")");
+						continue;
+					}
 					dizionario_comuni[area]["comuni"][nome_comune] = dato_comune;
 					var linea_csv = today_date+",\t"+area +",\t"+nome_comune+",\t"+dato_comune;
 					console.log(linea_csv);
@@ -73,6 +92,11 @@ for (var i = 0; i < lines.length; i++) {
 		if (!area) {continue};
 	}
 
+}
+
+if (tabella_comuni.length < 1) {
+	console.error("No data found in " + fn + ". Dumping log info on stdout.");
+	console.log(lines)
 }
 
 // console.log(JSON.stringify(dizionario_comuni));
