@@ -1,0 +1,7 @@
+# The project should not take responsibility
+# for distributing the date. Users should 
+# fetch the data from the original sources 
+# direclty
+*.html
+
+node_modules/
