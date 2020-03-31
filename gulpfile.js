@@ -4,9 +4,7 @@ var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'); 
 
 gulp.task('backend', function () { 
-    return gulp.src('./server/**/*.ts')
-        .pipe(ts({ noImplicitAny: true, lib: ["es2015"] 
-    }))
+    return gulp.src('./server/**/*')
     .pipe(gulp.dest('dist/')); 
 });
 

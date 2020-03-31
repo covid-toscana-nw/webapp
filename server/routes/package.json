@@ -1,0 +1,23 @@
+{
+  "name": "bollettini-toscana-nord",
+  "version": "0.0.1",
+  "description": "Analizza i bollettini della USL Toscana Nord per avere dati strutturati",
+  "main": "parse-bollettino.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michele-carignani/bollettini-toscana-nord.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michele-carignani/bollettini-toscana-nord/issues"
+  },
+  "homepage": "https://github.com/michele-carignani/bollettini-toscana-nord#readme"
+}
