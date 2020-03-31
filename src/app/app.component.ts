@@ -13,6 +13,5 @@ export class AppComponent {
 
     httpClient.get<string>('http://localhost:3000/api/test')
       .subscribe(arg => this.title = arg);
-
   }
 };
