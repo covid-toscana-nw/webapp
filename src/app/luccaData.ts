@@ -8,51 +8,90 @@ constructor(httpClient: HttpClient) {
 export var luccaMulti = [
   
   {
-    "name": "USA",
+    "name": "Lucca",
     "series": [
       {
-        "name": "1990",
-        "value": 250000000
+        "name": "01/03/2020",
+        "value": 0
       },
       {
-        "name": "2010",
-        "value": 309000000
+        "name": "02/03/2020",
+        "value": 0
       },
       {
-        "name": "2011",
-        "value": 311000000
-      }
+        "name": "03/03/2020",
+        "value": 0
+      },
+      {
+        "name": "04/03/2020",
+        "value": 0
+      },
+      {
+        "name": "05/03/2020",
+        "value": 30
+      },
+      {
+        "name": "06/03/2020",
+        "value": 50
+      },
     ]
   },
 
-  {
-    "name": "France",
+   {"name": "Capannori",
     "series": [
       {
-        "name": "1990",
-        "value": 58000000
+        "name": "01/03/2020",
+        "value": 0
       },
       {
-        "name": "2010",
-        "value": 50000020
+        "name": "02/03/2020",
+        "value": 10
       },
       {
-        "name": "2011",
-        "value": 58000000
-      }
+        "name": "03/03/2020",
+        "value": 33
+      },
+      {
+        "name": "04/03/2020",
+        "value": 55
+      },
+      {
+        "name": "05/03/2020",
+        "value": 70
+      },
+      {
+        "name": "06/03/2020",
+        "value": 80
+      },
     ]
   },
-  {
-    "name": "UK",
+  
+  {"name": "Viareggio",
     "series": [
       {
-        "name": "1990",
-        "value": 57000000
+        "name": "01/03/2020",
+        "value": 0
       },
       {
-        "name": "2010",
-        "value": 62000000
-      }
+        "name": "02/03/2020",
+        "value": 0
+      },
+      {
+        "name": "03/03/2020",
+        "value": 50
+      },
+      {
+        "name": "04/03/2020",
+        "value": 78
+      },
+      {
+        "name": "05/03/2020",
+        "value": 120
+      },
+      {
+        "name": "06/03/2020",
+        "value": 170
+      },
     ]
-  }
+  },
 ];

@@ -25,8 +25,8 @@ export class AppComponent {
   yAxis: boolean = true;
   showYAxisLabel: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
+  xAxisLabel: string = 'Data';
+  yAxisLabel: string = 'Contagiati';
   timeline: boolean = true;
 
   colorScheme = {
@@ -50,13 +50,15 @@ export class AppComponent {
   }
 
   onClickFun(citta): void{
-    console.log(citta);
-    console.log(multi);
-    console.log(luccaMulti);
-    this.multi = null;
-    console.log(multi);
-    this.multi = (luccaMulti);
-    console.log(multi);
+    if(citta == 'Lucca'){
+      this.multi = null;
+      this.multi = (luccaMulti);
+      console.log(luccaMulti);
+    } else {
+      this.multi = null;
+      this.multi = multi;
+      console.log(multi);
+    }
   }
 
 }
