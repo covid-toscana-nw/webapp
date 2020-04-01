@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { multi } from './data';
+import { luccaMulti } from './luccaData';
 
 @Component({
 
@@ -46,6 +47,16 @@ export class AppComponent {
 
   onDeactivate(data): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
+
+  onClickFun(citta): void{
+    console.log(citta);
+    console.log(multi);
+    console.log(luccaMulti);
+    this.multi = null;
+    console.log(multi);
+    this.multi = (luccaMulti);
+    console.log(multi);
   }
 
 }
