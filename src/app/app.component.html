@@ -1,1 +1,12 @@
-<app-datacontagiati></app-datacontagiati>
+<mat-sidenav-container class="example-container" >
+  <mat-sidenav opened #sidenav mode="side">
+    <app-menu></app-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p><mat-icon (click)="sidenav.toggle()">apps</mat-icon></p>
+    <div class="example-events">
+      <app-datacontagiati></app-datacontagiati>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
