@@ -36,4 +36,8 @@ export class AppComponent implements OnDestroy{
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  scrollToTop(){
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+  }
+
 }
