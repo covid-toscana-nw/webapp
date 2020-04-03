@@ -12,6 +12,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonToggleModule,
     MatListModule,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
 
   ],
 
