@@ -1,5 +1,5 @@
 <div class="content" role="main">
-    <h3 id="datacontagiatisingolezone"> Grafico data/contagiati </h3>
+    <h2 id="datacontagiatizone" class="mat-h2"> Grafico data/contagiati diviso per zone</h2>
 
     <p>
     <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
@@ -23,6 +23,7 @@
                 [yAxisLabel]="yAxisLabel"
                 [timeline]="timeline"
                 [results]="multi"
+                [legendPosition]="'below'"
                 (select)="onSelect($event)"
                 (activate)="onActivate($event)"
                 (deactivate)="onDeactivate($event)"

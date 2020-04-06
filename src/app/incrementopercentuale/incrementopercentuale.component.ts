@@ -21,13 +21,12 @@ import { apuaneData } from './apuanedata';
 import { lunigianaData } from './lunigianadata';
 
 @Component({
-
-  selector: 'app-datacontagiatisingolezone',
-  templateUrl: './datacontagiatisingolezone.component.html',
-  styleUrls: ['./datacontagiatisingolezone.component.scss']
+  selector: 'app-incrementopercentuale',
+  templateUrl: './incrementopercentuale.component.html',
+  styleUrls: ['./incrementopercentuale.component.scss']
 })
 
-export class DatacontagiatisingolezoneComponent {
+export class IncrementopercentualeComponent {
   multi: any[];
   view: any[] = [700, 500];
 
@@ -61,26 +60,6 @@ export class DatacontagiatisingolezoneComponent {
 
   onDeactivate(data): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onClickFun(localita): void{
-    if(localita == 'Piana di Lucca'){
-      this.multi = null;
-      this.multi = (pianaDiLuccaData);
-      console.log(pianaDiLuccaData);
-    } else if(localita == 'Apuane'){
-      this.multi = null;
-      this.multi = (apuaneData);
-      console.log(pianaDiLuccaData);
-    } else if(localita == 'Lunigiana'){
-      this.multi = null;
-      this.multi = (lunigianaData);
-      console.log(pianaDiLuccaData);
-    } else {
-      this.multi = null;
-      this.multi = multi;
-      console.log(multi);
-    }
   }
 
 }

@@ -2,10 +2,6 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 
-html, body, app-root, .app-frame {
-    height: 100%;
-}
-
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .content {

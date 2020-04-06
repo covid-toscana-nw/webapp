@@ -5,7 +5,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClientModule } from '@angular/common/http';
-import { DatacontagiatisingolezoneComponent } from './datacontagiatisingolezone/datacontagiatisingolezone.component';
+import { DatacontagiatizoneComponent } from './datacontagiatizone/datacontagiatizone.component';
+import { DatacontagiatitoscananoComponent } from './datacontagiatitoscanano/datacontagiatitoscanano.component';
+import { IncrementopercentualeComponent } from './incrementopercentuale/incrementopercentuale.component';
 import { MenuComponent } from './menu/menu.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -14,12 +16,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
-
 @NgModule({
 
   declarations: [
     AppComponent,
-    DatacontagiatisingolezoneComponent,
+    DatacontagiatizoneComponent,
+    DatacontagiatitoscananoComponent,
+    IncrementopercentualeComponent,
     MenuComponent
   ],
 

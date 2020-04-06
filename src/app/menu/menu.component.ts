@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
     const element = document.querySelector($tag)
     console.log(element);
     if (element) {
-      element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+      element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
     }
   }
 }

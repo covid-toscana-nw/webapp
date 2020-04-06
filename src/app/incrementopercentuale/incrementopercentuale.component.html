@@ -1,0 +1,25 @@
+<div class="content" role="main">
+    <h2 id="incrementopercentuale" class="mat-h2 docs-primary-header">Incremento percentuale Toscana nord ovest</h2>
+
+    <div class="areachart-wrapper dark">
+
+              <ngx-charts-line-chart
+                [view]="view"
+                [scheme]="colorScheme"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxis]="xAxis"
+                [yAxis]="yAxis"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [timeline]="timeline"
+                [results]="multi"
+                (select)="onSelect($event)"
+                (activate)="onActivate($event)"
+                (deactivate)="onDeactivate($event)"
+                >
+              </ngx-charts-line-chart>
+
+      </div>
+
+</div>

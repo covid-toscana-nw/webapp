@@ -1,20 +1,23 @@
 
-<mat-toolbar color="primary" class="toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="app-name">Bollettino Toscana nord ovest</h1>
-</mat-toolbar>
+<section class="mat-typography">
+  <mat-toolbar color="primary" class="toolbar mat-elevation-z4">
+      <button mat-icon-button (click)="snav.toggle()" ><mat-icon>menu</mat-icon></button>
+      <h1 class="app-name">Bollettino Toscana nord ovest</h1>
+  </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container" >
-  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" >
-    <app-menu></app-menu>
-  </mat-sidenav>
+  <mat-sidenav-container class="sidenav-container" >
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="true" fixedTopGap="56">
+      <app-menu></app-menu>
+    </mat-sidenav>
 
-  <mat-sidenav-content>
-    <div class="events">
-      <app-datacontagiatisingolezone></app-datacontagiatisingolezone>
-    </div>
-    <button mat-icon-button id="to-top-button" (click)="scrollToTop()" ><mat-icon>keyboard_arrow_up</mat-icon></button>
-  </mat-sidenav-content>
+    <mat-sidenav-content>
+      <div class="events">
+        <app-datacontagiatitoscanano></app-datacontagiatitoscanano>
+        <app-datacontagiatizone></app-datacontagiatizone>
+        <app-incrementopercentuale></app-incrementopercentuale>
+      </div>
+      <button mat-icon-button id="to-top-button" (click)="scrollToTop()" ><mat-icon>keyboard_arrow_up</mat-icon></button>
+    </mat-sidenav-content>
 
-</mat-sidenav-container>
+  </mat-sidenav-container>
+</section>
