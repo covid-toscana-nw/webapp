@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DatacontagiatiComponent } from './datacontagiati.component';
+import { DatacontagiatisingolezoneComponent } from './datacontagiatisingolezone.component';
 
 describe('DatacontagiatiComponent', () => {
-  let component: DatacontagiatiComponent;
-  let fixture: ComponentFixture<DatacontagiatiComponent>;
+  let component: DatacontagiatisingolezoneComponent;
+  let fixture: ComponentFixture<DatacontagiatisingolezoneComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DatacontagiatiComponent ]
+      declarations: [ DatacontagiatisingolezoneComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DatacontagiatiComponent);
+    fixture = TestBed.createComponent(DatacontagiatisingolezoneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

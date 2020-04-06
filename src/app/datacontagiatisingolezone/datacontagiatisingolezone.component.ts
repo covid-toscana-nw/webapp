@@ -16,18 +16,20 @@ export class DatacontagiatiComponent implements OnInit {
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { multi } from './data';
-import { luccaMulti } from './luccaData';
+import { pianaDiLuccaData } from './pianadiluccadata';
+import { apuaneData } from './apuanedata';
+import { lunigianaData } from './lunigianadata';
 
 @Component({
 
-  selector: 'app-datacontagiati',
-  templateUrl: './datacontagiati.component.html',
-  styleUrls: ['./datacontagiati.component.scss']
+  selector: 'app-datacontagiatisingolezone',
+  templateUrl: './datacontagiatisingolezone.component.html',
+  styleUrls: ['./datacontagiatisingolezone.component.scss']
 })
 
-export class DatacontagiatiComponent {
+export class DatacontagiatisingolezoneComponent {
   multi: any[];
-  view: any[] = [700, 300];
+  view: any[] = [700, 500];
 
   // options
   legend: boolean = true;
@@ -61,11 +63,19 @@ export class DatacontagiatiComponent {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
-  onClickFun(citta): void{
-    if(citta == 'Lucca'){
+  onClickFun(localita): void{
+    if(localita == 'Piana di Lucca'){
       this.multi = null;
-      this.multi = (luccaMulti);
-      console.log(luccaMulti);
+      this.multi = (pianaDiLuccaData);
+      console.log(pianaDiLuccaData);
+    } else if(localita == 'Apuane'){
+      this.multi = null;
+      this.multi = (apuaneData);
+      console.log(pianaDiLuccaData);
+    } else if(localita == 'Lunigiana'){
+      this.multi = null;
+      this.multi = (lunigianaData);
+      console.log(pianaDiLuccaData);
     } else {
       this.multi = null;
       this.multi = multi;
