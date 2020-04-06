@@ -1,1 +1,1 @@
-web: npx gulp nodemon
+web: node dist/server.js
