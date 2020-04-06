@@ -2,7 +2,7 @@
 # for distributing the date. Users should 
 # fetch the data from the original sources 
 # direclty
-*.html
+#*.html
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
