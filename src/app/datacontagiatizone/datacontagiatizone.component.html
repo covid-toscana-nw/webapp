@@ -3,9 +3,16 @@
 
     <p>
     <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle (click)="onClickFun('Piana di Lucca')" value="bold">Piana di Lucca</mat-button-toggle>
       <mat-button-toggle (click)="onClickFun('Apuane')" value="bold">Apuane</mat-button-toggle>
       <mat-button-toggle (click)="onClickFun('Lunigiana')" value="bold">Lunigiana</mat-button-toggle>
+      <mat-button-toggle (click)="onClickFun('Piana di Lucca')" value="bold">Piana di Lucca</mat-button-toggle>
+      <mat-button-toggle (click)="onClickFun('Valle del Serchio')" value="bold">Valle del Serchio</mat-button-toggle>
+      <mat-button-toggle (click)="onClickFun('Zona pisana')" value="bold">Zona pisana</mat-button-toggle>
+      <mat-button-toggle (click)="onClickFun('Alta Val di Cecina Val d Era')" value="bold">Alta  Val di Cecina Val d'Era</mat-button-toggle>
+      <mat-button-toggle (click)="onClickFun('Zona Livornese')" value="bold">Zona Livornese</mat-button-toggle>
+      <mat-button-toggle (click)="onClickFun('Elba')" value="bold">Elba</mat-button-toggle>
+      <mat-button-toggle (click)="onClickFun('Bassa Val di Cecina Val di Cornia')" value="bold">Bassa Val di Cecina Val di Cornia</mat-button-toggle>
+      <mat-button-toggle (click)="onClickFun('Versilia')" value="bold">Versilia</mat-button-toggle>
     </mat-button-toggle-group>
     </p>
 
@@ -23,7 +30,6 @@
                 [yAxisLabel]="yAxisLabel"
                 [timeline]="timeline"
                 [results]="multi"
-                [legendPosition]="'below'"
                 (select)="onSelect($event)"
                 (activate)="onActivate($event)"
                 (deactivate)="onDeactivate($event)"

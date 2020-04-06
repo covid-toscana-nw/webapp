@@ -78,19 +78,19 @@ export var multi = [
       },
       {
         "name": "03/03/2020",
-        "value": 50
+        "value": 12
       },
       {
         "name": "04/03/2020",
-        "value": 78
+        "value": 23
       },
       {
         "name": "05/03/2020",
-        "value": 120
+        "value": 45
       },
       {
         "name": "06/03/2020",
-        "value": 170
+        "value": 56
       },
     ]
   },
@@ -107,15 +107,15 @@ export var multi = [
       },
       {
         "name": "03/03/2020",
-        "value": 50
+        "value": 41
       },
       {
         "name": "04/03/2020",
-        "value": 78
+        "value": 57
       },
       {
         "name": "05/03/2020",
-        "value": 120
+        "value": 69
       },
       {
         "name": "06/03/2020",
@@ -136,19 +136,19 @@ export var multi = [
       },
       {
         "name": "03/03/2020",
-        "value": 50
+        "value": 42
       },
       {
         "name": "04/03/2020",
-        "value": 78
+        "value": 45
       },
       {
         "name": "05/03/2020",
-        "value": 120
+        "value": 69
       },
       {
         "name": "06/03/2020",
-        "value": 170
+        "value": 78
       },
     ]
   },
@@ -165,11 +165,11 @@ export var multi = [
       },
       {
         "name": "03/03/2020",
-        "value": 50
+        "value": 87
       },
       {
         "name": "04/03/2020",
-        "value": 78
+        "value": 99
       },
       {
         "name": "05/03/2020",
@@ -177,7 +177,7 @@ export var multi = [
       },
       {
         "name": "06/03/2020",
-        "value": 170
+        "value": 230
       },
     ]
   },
