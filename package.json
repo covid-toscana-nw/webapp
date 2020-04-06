@@ -2,7 +2,7 @@
   "name": "bollettini-toscana-nord",
   "version": "0.0.2",
   "description": "Analizza i bollettini della USL Toscana Nord per avere dati strutturati",
-  "main": "parse-bollettino.js",
+  // "main": "parse-bollettino.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/michele-carignani/bollettini-toscana-nord.git"
@@ -14,12 +14,12 @@
   },
   "homepage": "https://github.com/michele-carignani/bollettini-toscana-nord#readme",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "ng": "npx ng",
+    "start": "npx ng serve",
+    "test": "npx ng test",
+    "lint": "npx ng lint",
+    "e2e": "npx ng e2e",
+    "postinstall": "npx ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
