@@ -1,1 +1,1 @@
-web: npx ng serve --port $PORT
+web: cd ./dist/covid19ToscanaNordOvest && http-server -p $PORT
