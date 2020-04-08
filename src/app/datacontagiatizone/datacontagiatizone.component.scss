@@ -1,9 +1,15 @@
-mat-button-toggle-group {
-  margin-left: 12px;
-}
+::ng-deep {
+    .legend-label{
+        display: inline;
+    }
 
-::ng-deep .ngx-charts { 
-    text{
-        fill: #fff!important; 
+    .chart-legend .legend-label-text{
+        width: auto !important;
+    }
+
+    .ngx-charts { 
+        text{
+            fill: #fff!important; 
+        }
     }
 }

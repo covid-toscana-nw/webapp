@@ -1,41 +1,34 @@
 <div class="content" role="main">
-    <h2 id="datacontagiatizone" class="mat-h2"> Grafico data/contagiati diviso per zone</h2>
+    <h2 id="datacontagiatizone" class="mat-h2"> Contagi diviso per zone</h2>
 
-    <p>
-    <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle (click)="onClickFun('Apuane')" value="bold">Apuane</mat-button-toggle>
-      <mat-button-toggle (click)="onClickFun('Lunigiana')" value="bold">Lunigiana</mat-button-toggle>
-      <mat-button-toggle (click)="onClickFun('Piana di Lucca')" value="bold">Piana di Lucca</mat-button-toggle>
-      <mat-button-toggle (click)="onClickFun('Valle del Serchio')" value="bold">Valle del Serchio</mat-button-toggle>
-      <mat-button-toggle (click)="onClickFun('Zona pisana')" value="bold">Zona pisana</mat-button-toggle>
-      <mat-button-toggle (click)="onClickFun('Alta Val di Cecina Val d Era')" value="bold">Alta  Val di Cecina Val d'Era</mat-button-toggle>
-      <mat-button-toggle (click)="onClickFun('Zona Livornese')" value="bold">Zona Livornese</mat-button-toggle>
-      <mat-button-toggle (click)="onClickFun('Elba')" value="bold">Elba</mat-button-toggle>
-      <mat-button-toggle (click)="onClickFun('Bassa Val di Cecina Val di Cornia')" value="bold">Bassa Val di Cecina Val di Cornia</mat-button-toggle>
-      <mat-button-toggle (click)="onClickFun('Versilia')" value="bold">Versilia</mat-button-toggle>
-    </mat-button-toggle-group>
-    </p>
-
-    <div class="areachart-wrapper dark">
-
-              <ngx-charts-line-chart
-                [view]="view"
-                [scheme]="colorScheme"
-                [legend]="legend"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxis]="xAxis"
-                [yAxis]="yAxis"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                [timeline]="timeline"
-                [results]="multi"
-                (select)="onSelect($event)"
-                (activate)="onActivate($event)"
-                (deactivate)="onDeactivate($event)"
-                >
-              </ngx-charts-line-chart>
-
-      </div>
+        <div class="areachart-wrapper">
+                <div *ngIf="chartNames" class="chart-legend">
+                        <ngx-charts-legend 
+                                [data]="chartNames" 
+                                [title]="'Zone'" 
+                                [colors]="colors" 
+                                (labelActivate)="legendLabelActivate($event)" 
+                                (labelDeactivate)="legendLabelDeactivate($event)">
+                        </ngx-charts-legend>
+                </div>
+                <div class="chart">
+                        <ngx-charts-line-chart
+                                [activeEntries]="activeEntries"
+                                [view]="view"
+                                [scheme]="colorScheme"
+                                [showXAxisLabel]="showXAxisLabel"
+                                [showYAxisLabel]="showYAxisLabel"
+                                [xAxis]="xAxis"
+                                [yAxis]="yAxis"
+                                [xAxisLabel]="xAxisLabel"
+                                [yAxisLabel]="yAxisLabel"
+                                [timeline]="timeline"
+                                [results]="multi"
+                                (select)="onSelect($event)"
+                                (activate)="onActivate($event)"
+                                (deactivate)="onDeactivate($event)">
+                        </ngx-charts-line-chart>
+                </div>
+        </div>
 
 </div>

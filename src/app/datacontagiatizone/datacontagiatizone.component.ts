@@ -13,26 +13,29 @@ export class DatacontagiatiComponent implements OnInit {
   }
 
 }*/
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { multi } from './data';
 import { pianaDiLuccaData } from './pianadiluccadata';
 import { apuaneData } from './apuanedata';
 import { lunigianaData } from './lunigianadata';
+import { ColorHelper } from '@swimlane/ngx-charts';
 
 @Component({
-
   selector: 'app-datacontagiatizone',
   templateUrl: './datacontagiatizone.component.html',
   styleUrls: ['./datacontagiatizone.component.scss']
 })
 
-export class DatacontagiatizoneComponent {
+export class DatacontagiatizoneComponent implements OnInit{
   multi: any[];
   view: any[] = [700, 500];
+  public activeEntries: any[];
+  public chartNames: string[];
+  public colors: ColorHelper;
 
   // options
-  legend: boolean = true;
+  legend: boolean = false;
   showLabels: boolean = true;
   animations: boolean = true;
   xAxis: boolean = true;
@@ -51,6 +54,13 @@ export class DatacontagiatizoneComponent {
     Object.assign(this, { multi });
   }
 
+  public ngOnInit(): void {
+    // Get chartNames
+    this.chartNames = this.multi.map((d: any) => d.name);
+    // Convert hex colors to ColorHelper for consumption by legend
+    this.colors = new ColorHelper(this.colorScheme, 'ordinal', this.chartNames, this.colorScheme);
+  }
+
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
@@ -63,24 +73,11 @@ export class DatacontagiatizoneComponent {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
-  onClickFun(localita): void{
-    if(localita == 'Piana di Lucca'){
-      this.multi = null;
-      this.multi = (pianaDiLuccaData);
-      console.log(pianaDiLuccaData);
-    } else if(localita == 'Apuane'){
-      this.multi = null;
-      this.multi = (apuaneData);
-      console.log(pianaDiLuccaData);
-    } else if(localita == 'Lunigiana'){
-      this.multi = null;
-      this.multi = (lunigianaData);
-      console.log(pianaDiLuccaData);
-    } else {
-      this.multi = null;
-      this.multi = multi;
-      console.log(multi);
-    }
+  public legendLabelActivate(item: any): void {
+    this.activeEntries = [item];      
   }
 
+  public legendLabelDeactivate(item: any): void {
+    this.activeEntries = [];
+  }
 }
