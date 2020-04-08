@@ -15,6 +15,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {DataService} from './data.service';
 
 @NgModule({
 
@@ -42,7 +43,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
   ],
 
-  providers: [],
+  providers: [
+    DataService
+  ],
 
   bootstrap: [AppComponent]
 

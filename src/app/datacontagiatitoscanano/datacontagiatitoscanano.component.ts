@@ -15,16 +15,17 @@ export class DatacontagiatiComponent implements OnInit {
 }*/
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { multi } from './data';
 import { pianaDiLuccaData } from './pianadiluccadata';
 import { apuaneData } from './apuanedata';
 import { lunigianaData } from './lunigianadata';
+import { DataService } from '../data.service';
 
 @Component({
 
   selector: 'app-datacontagiatitoscanano',
   templateUrl: './datacontagiatitoscanano.component.html',
-  styleUrls: ['./datacontagiatitoscanano.component.scss']
+  styleUrls: ['./datacontagiatitoscanano.component.scss'],
+  providers: [ DataService ]
 })
 
 export class DatacontagiatitoscananoComponent {
@@ -47,8 +48,9 @@ export class DatacontagiatitoscananoComponent {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
-  constructor() {
-    Object.assign(this, { multi });
+  constructor(dataService : DataService) {
+    this.multi = dataService.getContagiToscana();
+    Object.assign(this, this.multi );
   }
 
   onSelect(data): void {
