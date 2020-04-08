@@ -1,9 +1,18 @@
 ::ng-deep {
     .legend-label{
         display: inline;
+        line-height: normal !important;
     }
 
-    .chart-legend .legend-label-text{
+    .legend-label-text{
+        width: auto !important;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 70px;
+    }
+
+    .legend-labels{
         width: auto !important;
     }
 
@@ -12,4 +21,8 @@
             fill: #fff!important; 
         }
     }
+}
+
+.areachart-wrapper{
+    display: contents;
 }
