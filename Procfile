@@ -1,1 +1,1 @@
-web: cd ./dist/covid19ToscanaNordOvest && http-server -p $PORT
+web: cd ./dist/covid19ToscanaNordOvest && npx http-server -p $PORT
