@@ -1,8 +1,7 @@
 <div class="content" role="main">
-    <h2 id="datacontagiatizone" class="mat-h2"> Contagi diviso per zone</h2>
+    <h2 class="mat-h2"> Contagi diviso per zone</h2>
 
-    <div class="areachart-wrapper">
-            <div *ngIf="chartNames" class="chart-legend">
+        <div *ngIf="chartNames" class="chart-legend">
                 <ngx-charts-legend 
                         [data]="chartNames" 
                         [title]="'Zone'" 
@@ -10,8 +9,8 @@
                         (labelActivate)="legendLabelActivate($event)" 
                         (labelDeactivate)="legendLabelDeactivate($event)">
                 </ngx-charts-legend>
-            </div>
-        <ngx-charts-line-chart
+        </div>
+        <ngx-charts-line-chart id="datacontagiatizone"
                 [activeEntries]="activeEntries"
                 [view]="view"
                 [scheme]="colorScheme"
@@ -26,7 +25,6 @@
                 (select)="onSelect($event)"
                 (activate)="onActivate($event)"
                 (deactivate)="onDeactivate($event)">
-              </ngx-charts-line-chart>
-      </div>
+        </ngx-charts-line-chart>
 
 </div>
