@@ -10,23 +10,21 @@
                         (labelDeactivate)="legendLabelDeactivate($event)">
                 </ngx-charts-legend>
                 <div class="area-chart">
-                <ngx-charts-line-chart id="datacontagiatizone"
-                        (window:resize)="onResize($event)"
-                        [view] = "view"
-                        [activeEntries]="activeEntries"
-                        [scheme]="colorScheme"
-                        [showXAxisLabel]="showXAxisLabel"
-                        [showYAxisLabel]="showYAxisLabel"
-                        [xAxis]="xAxis"
-                        [yAxis]="yAxis"
-                        [xAxisLabel]="xAxisLabel"
-                        [yAxisLabel]="yAxisLabel"
-                        [timeline]="timeline"
-                        [results]="multi"
-                        (select)="onSelect($event)"
-                        (activate)="onActivate($event)"
-                        (deactivate)="onDeactivate($event)">
-                </ngx-charts-line-chart>
+                        <ngx-charts-line-chart id="datacontagiatizone"
+                                [activeEntries]="activeEntries"
+                                [scheme]="colorScheme"
+                                [showXAxisLabel]="showXAxisLabel"
+                                [showYAxisLabel]="showYAxisLabel"
+                                [xAxis]="xAxis"
+                                [yAxis]="yAxis"
+                                [xAxisLabel]="xAxisLabel"
+                                [yAxisLabel]="yAxisLabel"
+                                [timeline]="timeline"
+                                [results]="multi"
+                                (select)="onSelect($event)"
+                                (activate)="onActivate($event)"
+                                (deactivate)="onDeactivate($event)">
+                        </ngx-charts-line-chart>
                 </div>
         </div>
 </div>
