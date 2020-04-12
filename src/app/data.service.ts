@@ -10,6 +10,8 @@ export class DataService {
   datiToscana : any[];
   httpc : HttpClient;
 
+  all_datasets : String = 'https://raw.githubusercontent.com/michele-carignani/bollettini-toscana-nw-datasets/master/toscana_nw_all_datasets.json';
+
   constructor(httpClient: HttpClient) {
  
 	  this.httpc = httpClient;
@@ -18,7 +20,7 @@ export class DataService {
 
   getContagiToscana() {
   	return new Promise((resolve, reject) => {
-  		this.httpc.get<string>('http://localhost:8080/DATI.json').toPromise()
+  		this.httpc.get<string>(all_datasets).toPromise()
   			.then(
   				res => { console.log(typeof(res)); this.datiToscana = [...res]; resolve(); },
           		msg => { reject(msg); }
