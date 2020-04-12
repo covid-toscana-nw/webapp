@@ -9,4 +9,5 @@ cat from-3-to-21-march.csv \
 
 cd ..
 
-node generate_json_date.js parsed/all_data.csv > data.json
+node generate_json_data.js parsed/all_data.csv > toscana_nw_all_datasets.json
+cp toscana_nw_all_datasets.json ../toscana-datasets/

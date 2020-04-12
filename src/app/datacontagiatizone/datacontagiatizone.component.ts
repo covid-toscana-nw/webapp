@@ -1,31 +1,18 @@
-/*import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-datacontagiati',
-  templateUrl: './datacontagiati.component.html',
-  styleUrls: ['./datacontagiati.component.scss']
-})
-export class DatacontagiatiComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}*/
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { multi } from './data';
 import { ColorHelper } from '@swimlane/ngx-charts';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-datacontagiatizone',
   templateUrl: './datacontagiatizone.component.html',
-  styleUrls: ['./datacontagiatizone.component.scss']
+  styleUrls: ['./datacontagiatizone.component.scss'],
+  providers: [ DataService ]
 })
 
 export class DatacontagiatizoneComponent implements OnInit{
   multi: any[];
+  loaded: Boolean = false;
   public activeEntries: any[];
   public chartNames: string[];
   public colors: ColorHelper;
@@ -46,8 +33,11 @@ export class DatacontagiatizoneComponent implements OnInit{
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
-  constructor() {
-    Object.assign(this, { multi });
+  constructor(dataService : DataService) {
+    dataService.getContagiToscana().then(arg => {
+      this.multi = dataService.data_for_all_charts['aree'];
+      this.loaded=true;
+    });
   }
 
   public ngOnInit(): void {

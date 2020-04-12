@@ -10,7 +10,7 @@
                         (labelDeactivate)="legendLabelDeactivate($event)">
                 </ngx-charts-legend>
                 <div class="area-wrapper">
-                        <ngx-charts-line-chart id="datacontagiatizone"
+                        <ngx-charts-line-chart id="datacontagiatizone" *ngIf="loaded"
                                 [activeEntries]="activeEntries"
                                 [scheme]="colorScheme"
                                 [showXAxisLabel]="showXAxisLabel"

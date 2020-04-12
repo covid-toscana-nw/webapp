@@ -134,6 +134,7 @@ console.error("Locations number: " + locations.data.length)
 function createSeries(name, query){
 	var increments = [];
 	var totals = [];
+	var tassi = [];
 	var tot = 0;
 	for (var i = 0; i < allDays.length; i++) {
 		// console.log(allDays[i]);
@@ -149,6 +150,20 @@ function createSeries(name, query){
 			contagi = contagi + Number.parseInt(queryResults[j]["nuovi_contagi"]);
 			// console.log(queryResults[j]["nuovi_contagi"]);
 		}
+		
+		if(totals.length == 0) {
+			tassi.push({
+				'name': allDays[i],
+				'value': 100
+			});
+		} else {
+			var previous_tot = totals.slice(-1)[0].value;
+			tassi.push({
+				'name': allDays[i],
+				'value': ((contagi * 100) / previous_tot).toFixed(2)
+			});
+		}
+
 		tot = tot + contagi;
 		increments.push({
 			'name': allDays[i], 
@@ -161,8 +176,9 @@ function createSeries(name, query){
 		});
 	}
 	return [
-		{ "name": name + " incrementi", "series": increments } , 
-		{ "name" : name + " totali", "series": totals } 
+		{ "name": "Nuovi contagi " + name, "series": increments } , 
+		{ "name" : "Totale contagi "+  name , "series": totals },
+		{ "name" : "Tasso crescita "+name, "series": tassi }
 	]
 }
 
@@ -181,18 +197,22 @@ function getArea (obj) {
 //console.log(records.find({'day': '2020-03-03'}).length)
 //console.log(records.find(Object.assign({'day': '2020-03-03'},{'area': 'Michele'})).length)
 
+var serieToscana = createSeries("toscana", {});
+
 var all_data = {
-	'Toscana' : createSeries("Toscana", {})
+	'toscana' : [serieToscana[0], serieToscana[1]],
+	'aree' : [],
+	'tasso-crescita' : [serieToscana[2]]
 }
 
-//var aree = locations.mapReduce(getArea, getUnique);
-//for (var i = 0; i < aree.length; i++) {
-//	all_data[aree[i]] = createSeries(aree[i], {'area' : aree[i]});
-//}
+var aree = locations.mapReduce(getArea, getUnique);
+for (var i = 0; i < aree.length; i++) {
+	var serie =  createSeries(aree[i], {'area' : aree[i]});
+	all_data['aree'].push(serie[0]);
+	all_data['aree'].push(serie[1]);
+}
 
-console.log(JSON.stringify(all_data['Toscana']));
-
-
+console.log(JSON.stringify(all_data));
 
 function generate_chartjs_data () {
 	console.log(JSON.stringify({

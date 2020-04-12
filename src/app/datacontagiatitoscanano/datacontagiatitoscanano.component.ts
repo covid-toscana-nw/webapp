@@ -1,27 +1,8 @@
-/*import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-datacontagiati',
-  templateUrl: './datacontagiati.component.html',
-  styleUrls: ['./datacontagiati.component.scss']
-})
-export class DatacontagiatiComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}*/
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { pianaDiLuccaData } from './pianadiluccadata';
-import { apuaneData } from './apuanedata';
-import { lunigianaData } from './lunigianadata';
 import { DataService } from '../data.service';
 
 @Component({
-
   selector: 'app-datacontagiatitoscanano',
   templateUrl: './datacontagiatitoscanano.component.html',
   styleUrls: ['./datacontagiatitoscanano.component.scss'],
@@ -50,10 +31,9 @@ export class DatacontagiatitoscananoComponent {
 
   constructor(dataService : DataService) {
     dataService.getContagiToscana().then(arg => {
-      this.multi = dataService.datiToscana;
+      this.multi = dataService.data_for_all_charts['toscana'];
       this.loaded=true;
-      console.log("OK");
-    });   
+    });
   }
 
   onSelect(data): void {
