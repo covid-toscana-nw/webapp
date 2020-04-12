@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
 
   data_for_all_charts : any[];
+  loadFileTask : Promise<any>;
   httpc : HttpClient;
   loaded : Boolean;
  
@@ -16,20 +17,18 @@ export class DataService {
 
   constructor(httpClient: HttpClient) {
  
-	  this.httpc = httpClient;
-
+	this.httpc = httpClient;
+	this.loadFileTask = this.httpc.get<any>(this.all_datasets).toPromise().then(
+	  				res => { this.loaded = true; console.log(res); this.data_for_all_charts = res; },
+	          		msg => {  }
+	  			);
   }
 
   getContagiToscana() {
     if(!this.loaded)
-	  	return new Promise((resolve, reject) => {
-	  		this.httpc.get<any>(this.all_datasets).toPromise()
-	  			.then(
-	  				res => { console.log(res); this.data_for_all_charts = res; this.loaded = true; resolve(); },
-	          		msg => { reject(msg); }
-	  			)
-	  	});
-	else
+	  	return this.loadFileTask;
+	else {
 		return Promise.resolve('done');
+	}
   }
 }

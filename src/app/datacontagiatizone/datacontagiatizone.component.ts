@@ -13,6 +13,7 @@ import { DataService } from '../data.service';
 export class DatacontagiatizoneComponent implements OnInit{
   multi: any[];
   loaded: Boolean = false;
+  dataService : DataService;
   public activeEntries: any[];
   public chartNames: string[];
   public colors: ColorHelper;
@@ -34,6 +35,7 @@ export class DatacontagiatizoneComponent implements OnInit{
   };
 
   constructor(dataService : DataService) {
+  this.dataService = dataService; 
     dataService.getContagiToscana().then(arg => {
       this.multi = dataService.data_for_all_charts['aree'];
       this.loaded=true;
@@ -41,30 +43,34 @@ export class DatacontagiatizoneComponent implements OnInit{
   }
 
   public ngOnInit(): void {
-    // Get chartNames
-    this.chartNames = this.multi.map((d: any) => d.name);
-    // Convert hex colors to ColorHelper for consumption by legend
-    this.colors = new ColorHelper(this.colorScheme, 'ordinal', this.chartNames, this.colorScheme);
+
+    this.dataService.getContagiToscana().then(arg =>{
+        // Get chartNames
+        this.chartNames = this.multi.map((d: any) => d.name);
+        // Convert hex colors to ColorHelper for consumption by legend
+        this.colors = new ColorHelper(this.colorScheme, 'ordinal', this.chartNames, this.colorScheme);
+    });
+  
   }
 
   onSelect(data): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+    //console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
 
   onActivate(data): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
+    //console.log('Activate', JSON.parse(JSON.stringify(data)));
   }
 
   onDeactivate(data): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+    //console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
   public legendLabelActivate(item: any): void {
-    this.activeEntries = [item];      
+     this.activeEntries = [item];      
   }
 
   public legendLabelDeactivate(item: any): void {
-    this.activeEntries = [];
+     this.activeEntries = [];
   }
 
 }

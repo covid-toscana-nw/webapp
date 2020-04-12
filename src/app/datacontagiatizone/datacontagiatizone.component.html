@@ -2,7 +2,7 @@
     <h2 class="mat-h2"> Contagi diviso per zone</h2>
 
         
-                <ngx-charts-legend class="chart-legend"
+                <ngx-charts-legend class="chart-legend" *ngIf="loaded"
                         [data]="chartNames" 
                         [title]="'Zone'" 
                         [colors]="colors" 

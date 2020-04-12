@@ -1,34 +1,18 @@
-/*import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-datacontagiati',
-  templateUrl: './datacontagiati.component.html',
-  styleUrls: ['./datacontagiati.component.scss']
-})
-export class DatacontagiatiComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}*/
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { single } from './data';
-import { pianaDiLuccaData } from './pianadiluccadata';
-import { apuaneData } from './apuanedata';
-import { lunigianaData } from './lunigianadata';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-incrementopercentuale',
   templateUrl: './incrementopercentuale.component.html',
-  styleUrls: ['./incrementopercentuale.component.scss']
+  styleUrls: ['./incrementopercentuale.component.scss'],
+  providers: [ DataService ]
 })
 
 export class IncrementopercentualeComponent {
   single: any[];
   multi: any[];
+  loaded: Boolean = false;
 
   // options
   showXAxis = true;
@@ -44,8 +28,11 @@ export class IncrementopercentualeComponent {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor() {
-    Object.assign(this, { single })
+  constructor(dataService : DataService) {
+    dataService.getContagiToscana().then(arg => {
+      this.single = dataService.data_for_all_charts['tasso-crescita'][0]['series'];
+      this.loaded=true;
+    });
   }
 
   onSelect(event) {
