@@ -79,4 +79,5 @@ export class DatacontagiatizoneComponent implements OnInit{
   public legendLabelDeactivate(item: any): void {
     this.activeEntries = [];
   }
+
 }

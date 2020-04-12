@@ -9,7 +9,10 @@
                         (labelActivate)="legendLabelActivate($event)" 
                         (labelDeactivate)="legendLabelDeactivate($event)">
                 </ngx-charts-legend>
+                <div class="area-chart">
                 <ngx-charts-line-chart id="datacontagiatizone"
+                        (window:resize)="onResize($event)"
+                        [view] = "view"
                         [activeEntries]="activeEntries"
                         [scheme]="colorScheme"
                         [showXAxisLabel]="showXAxisLabel"
@@ -24,5 +27,6 @@
                         (activate)="onActivate($event)"
                         (deactivate)="onDeactivate($event)">
                 </ngx-charts-line-chart>
+                </div>
         </div>
 </div>

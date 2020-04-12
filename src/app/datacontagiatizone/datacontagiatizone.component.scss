@@ -1,5 +1,9 @@
 ::ng-deep {
 
+    .legend-wrap {
+        display: contents;
+    }
+
     .legend-label{
         line-height: normal !important;
     }
@@ -13,13 +17,14 @@
     }
 
     .legend-labels{
+        margin-bottom: 35px !important;
         width: auto !important;
         display: block;
         width: 100%;
         white-space: unset !important;
         li {
             display: inline-block;
-            width: 15%;
+            width: 14%;
         }
     }
 
@@ -28,7 +33,7 @@
     }
 
     @media (max-width: 500px) {
-        .legend-labels li { width: 50%; } /* On small screens, show one logo per row */
+        .legend-labels li { width: 45%; } /* On small screens, show one logo per row */
     }
 
     .ngx-charts { 
@@ -36,4 +41,8 @@
             fill: #fff!important; 
         }
     }
+}
+
+.area-chart{
+    height: 500px;
 }
