@@ -1,10 +1,8 @@
 <div class="content" role="main">
     <h2 class="mat-h2 docs-primary-header">Incremento percentuale Toscana nord ovest</h2>
 
-    <div class="areachart-wrapper dark">
-
+    <div class="area-wrapper">
               <ngx-charts-bar-vertical id="incrementopercentuale" 
-                [view]="view"
                 [scheme]="colorScheme"
                 [results]="single"
                 [gradient]="gradient"
@@ -16,7 +14,6 @@
                 [yAxisLabel]="yAxisLabel"
                 (select)="onSelect($event)">
               </ngx-charts-bar-vertical>
-
-      </div>
+    </div>
 
 </div>

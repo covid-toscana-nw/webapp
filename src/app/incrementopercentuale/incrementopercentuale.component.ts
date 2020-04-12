@@ -30,8 +30,6 @@ export class IncrementopercentualeComponent {
   single: any[];
   multi: any[];
 
-  view: any[] = [700, 500];
-
   // options
   showXAxis = true;
   showYAxis = true;

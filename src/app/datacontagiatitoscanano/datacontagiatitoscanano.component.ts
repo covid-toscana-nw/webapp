@@ -30,7 +30,6 @@ import { DataService } from '../data.service';
 
 export class DatacontagiatitoscananoComponent {
   multi: any[];
-  view: any[] = [700, 500];
 
   // options
   legend: boolean = true;

@@ -29,7 +29,6 @@ import { ColorHelper } from '@swimlane/ngx-charts';
 
 export class DatacontagiatizoneComponent implements OnInit{
   multi: any[];
-  view: any[] = [700, 500];
   public activeEntries: any[];
   public chartNames: string[];
   public colors: ColorHelper;

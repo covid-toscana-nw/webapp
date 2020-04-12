@@ -14,6 +14,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     -webkit-justify-content: center;
     -webkit-align-items: center;
     flex-wrap: wrap;
+    max-width: 960px;
+}
+
+.area-wrapper {
+    width: 100%;
 }
 
 button:focus {
