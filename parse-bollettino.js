@@ -1,13 +1,27 @@
+/*
+
+*/
+
 const fs = require('fs')
 const cheerio = require('cheerio')
 
 if (process.argv.length < 3) {
-	console.log("Usage: nodejs parse-bollettino.js <html-file>");
+	console.error("Usage: nodejs parse-bollettino.js <html-file>");
+  console.error("");
+  console.error("Expects an .html file and prints the parsed CSV on stdout.");
 	process.exit(1);
 }
 
+let $;
+
 let fn = process.argv[2];
-const $ = cheerio.load(fs.readFileSync(fn));
+try {
+  $ = cheerio.load(fs.readFileSync(fn));  
+} catch(e) {
+  console.error("Cannot open or parse HTML file: " + fn +". Detailed error below.\n\n");
+  console.error(e);
+  process.exit(2);
+}
 
 let article = $('div.article-body');
 
@@ -20,13 +34,19 @@ let area_regex = /^[a-zA-Z ]*:[0-9 ]*$/;
 let nome_comune_regex = /[a-zA-Z ’.]+/;
 let dato_comune_regex = /[0-9]+/;
 
-// TODO parametrize
-const today_date = "2020-03-25";
+const bollettino_date = clean_fn(fn);
 
 let area = "";
 
 dizionario_comuni = {};
 tabella_comuni = [];
+
+function clean_fn(fn) {
+  return fn
+    .split("/")
+    .splice(-1)[0]
+    .replace(".html", "");
+}
 
 function is_area(line) {
 	return (line.trim().search(area_regex) != -1) && 
@@ -82,7 +102,7 @@ for (var i = 0; i < lines.length; i++) {
 						continue;
 					}
 					dizionario_comuni[area]["comuni"][nome_comune] = dato_comune;
-					var linea_csv = today_date+",\t"+area +",\t"+nome_comune+",\t"+dato_comune;
+					var linea_csv = bollettino_date+",\t"+area +",\t"+nome_comune+",\t"+dato_comune;
 					console.log(linea_csv);
 					tabella_comuni.push(linea_csv);
 				}
