@@ -16,9 +16,6 @@ export class DatacontagiatiComponent implements OnInit {
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { multi } from './data';
-import { pianaDiLuccaData } from './pianadiluccadata';
-import { apuaneData } from './apuanedata';
-import { lunigianaData } from './lunigianadata';
 import { ColorHelper } from '@swimlane/ngx-charts';
 
 @Component({

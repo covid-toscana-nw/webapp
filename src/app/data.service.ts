@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -6,50 +7,22 @@ import { Injectable } from '@angular/core';
 
 export class DataService {
 
-  contagi_toscana_nw : any[];
+  datiToscana : any[];
+  httpc : HttpClient;
 
-  constructor() { 
-
-
-	this.contagi_toscana_nw = [
-  
-		  {
-		    "name": "Toscana nord ovest",
-		    "series": [
-		      {
-		        "name": "01/03/2020",
-		        "value": 3
-		      },
-		      {
-		        "name": "02/03/2020",
-		        "value": 45
-		      },
-		      {
-		        "name": "03/03/2020",
-		        "value": 123
-		      },
-		      {
-		        "name": "04/03/2020",
-		        "value": 233
-		      },
-		      {
-		        "name": "05/03/2020",
-		        "value": 33
-		      },
-		      {
-		        "name": "06/03/2020",
-		        "value": 4
-		      },
-		    ]
-		  }
-		];
-
+  constructor(httpClient: HttpClient) {
+ 
+	  this.httpc = httpClient;
 
   }
 
   getContagiToscana() {
-  	return this.contagi_toscana_nw;
+  	return new Promise((resolve, reject) => {
+  		this.httpc.get<string>('http://localhost:8080/DATI.json').toPromise()
+  			.then(
+  				res => { console.log(typeof(res)); this.datiToscana = [...res]; resolve(); },
+          		msg => { reject(msg); }
+  			)
+  	});
   }
-
-
 }

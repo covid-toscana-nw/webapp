@@ -102,7 +102,7 @@ for (var i = 0; i < lines.length; i++) {
 						continue;
 					}
 					dizionario_comuni[area]["comuni"][nome_comune] = dato_comune;
-					var linea_csv = bollettino_date+",\t"+area +",\t"+nome_comune+",\t"+dato_comune;
+					var linea_csv = bollettino_date+","+area +","+nome_comune+",\t"+dato_comune;
 					console.log(linea_csv);
 					tabella_comuni.push(linea_csv);
 				}

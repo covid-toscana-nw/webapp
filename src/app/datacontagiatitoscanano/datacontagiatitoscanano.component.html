@@ -1,8 +1,11 @@
 <div class="content" role="main">
     <h2 class="mat-h2 docs-primary-header">Contagi Toscana nord ovest</h2>
 
-    <div class="area-wrapper">
-              <ngx-charts-line-chart id="datacontagiatitoscanano" 
+    <div class="areachart-wrapper dark">
+
+              <ngx-charts-line-chart *ngIf="loaded"
+              	id="datacontagiatitoscanano"
+                [view]="view"
                 [scheme]="colorScheme"
                 [showXAxisLabel]="showXAxisLabel"
                 [showYAxisLabel]="showYAxisLabel"

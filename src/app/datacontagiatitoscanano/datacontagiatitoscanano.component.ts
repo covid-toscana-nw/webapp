@@ -30,6 +30,7 @@ import { DataService } from '../data.service';
 
 export class DatacontagiatitoscananoComponent {
   multi: any[];
+  loaded: Boolean = false;
 
   // options
   legend: boolean = true;
@@ -48,8 +49,11 @@ export class DatacontagiatitoscananoComponent {
   };
 
   constructor(dataService : DataService) {
-    this.multi = dataService.getContagiToscana();
-    Object.assign(this, this.multi );
+    dataService.getContagiToscana().then(arg => {
+      this.multi = dataService.datiToscana;
+      this.loaded=true;
+      console.log("OK");
+    });   
   }
 
   onSelect(data): void {
