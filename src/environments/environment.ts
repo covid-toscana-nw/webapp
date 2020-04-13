@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  dataSourceUrl: 'http://localhost:8080/toscana_nw_all_datasets.json'
 };
 
 /*

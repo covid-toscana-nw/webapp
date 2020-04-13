@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {environment} from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,7 @@ export class DataService {
   httpc : HttpClient;
   loaded : Boolean;
  
-//   all_datasets : string = 'https://raw.githubusercontent.com/michele-carignani/bollettini-toscana-nw-datasets/master/toscana_nw_all_datasets.json';
-  all_datasets : string = 'http://localhost:8080/toscana_nw_all_datasets.json';
+  all_datasets : string = environment.dataSourceUrl;
 
   constructor(httpClient: HttpClient) {
  

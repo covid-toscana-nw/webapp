@@ -158,9 +158,10 @@ function createSeries(name, query){
 			});
 		} else {
 			var previous_tot = totals.slice(-1)[0].value;
+			var incr_perc = ((contagi * 100) / previous_tot).toFixed(2);
 			tassi.push({
 				'name': allDays[i],
-				'value': ((contagi * 100) / previous_tot).toFixed(2)
+				'value': (incr_perc < 100) ? incr_perc : 100
 			});
 		}
 
@@ -176,9 +177,9 @@ function createSeries(name, query){
 		});
 	}
 	return [
-		{ "name": "Nuovi contagi " + name, "series": increments } , 
-		{ "name" : "Totale contagi "+  name , "series": totals },
-		{ "name" : "Tasso crescita "+name, "series": tassi }
+		{ "name":  name + " inc.", "series": increments } , 
+		{ "name" : name +  " tot." , "series": totals },
+		{ "name" :  name + " inc%", "series": tassi }
 	]
 }
 
@@ -208,7 +209,7 @@ var all_data = {
 var aree = locations.mapReduce(getArea, getUnique);
 for (var i = 0; i < aree.length; i++) {
 	var serie =  createSeries(aree[i], {'area' : aree[i]});
-	all_data['aree'].push(serie[0]);
+	//all_data['aree'].push(serie[0]);
 	all_data['aree'].push(serie[1]);
 }
 
