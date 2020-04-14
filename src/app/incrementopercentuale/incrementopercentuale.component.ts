@@ -25,7 +25,7 @@ export class IncrementopercentualeComponent {
   yAxisLabel = 'Incremento percentuale %';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#ffb300']
   };
 
   constructor(dataService : DataService) {
