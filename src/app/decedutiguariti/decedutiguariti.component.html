@@ -1,0 +1,27 @@
+<div class="content" role="main">
+    <h2 class="mat-h2 docs-primary-header">Deceduti guariti Toscana Nord-Ovest</h2>
+
+  <div>
+    <p class="text-justify">Per ogni giorno, su tutta l'area Toscana Nord-Ovest, viene mostrato l'incremento giornaliero in percentuale
+    rispetto al totale contagi del giorno precedente. </p>
+    <p  class="text-justify">Importante: la percentuale e' tagliata in alto a 100 per facilitare
+    la lettura del grafico, per cui i valori 100 dovrebbero essere letti "100 o piu'".</p>
+  </div>
+
+    <div class="area-wrapper">
+              <ngx-charts-bar-vertical-stacked id="decedutiguariti" *ngIf="loaded"
+                [scheme]="colorScheme"
+                [results]="multi"
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [animations]="animations"
+                (select)="onSelect($event)">
+              </ngx-charts-bar-vertical-stacked>
+    </div>
+
+</div>

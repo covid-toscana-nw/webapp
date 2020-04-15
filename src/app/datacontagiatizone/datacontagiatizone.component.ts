@@ -14,7 +14,7 @@ export class DatacontagiatizoneComponent implements OnInit{
   multi: any[];
   loaded: Boolean = false;
   dataService : DataService;
-  public activeEntries: any[];
+  public activeEntries: any[] = [];
   public chartNames: string[];
   public colors: ColorHelper;
 

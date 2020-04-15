@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatacontagiatizoneComponent } from './datacontagiatizone/datacontagiatizone.component';
 import { DatacontagiatitoscananoComponent } from './datacontagiatitoscanano/datacontagiatitoscanano.component';
 import { IncrementopercentualeComponent } from './incrementopercentuale/incrementopercentuale.component';
+import { DecedutiguaritiComponent } from './decedutiguariti/decedutiguariti.component';
 import { MenuComponent } from './menu/menu.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -24,6 +25,7 @@ import {DataService} from './data.service';
     DatacontagiatizoneComponent,
     DatacontagiatitoscananoComponent,
     IncrementopercentualeComponent,
+    DecedutiguaritiComponent,
     MenuComponent
   ],
 
