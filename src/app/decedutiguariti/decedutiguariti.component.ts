@@ -27,12 +27,12 @@ export class DecedutiguaritiComponent {
   animations: boolean = true;
 
   colorScheme = {
-    domain: ['#ffb300', '#9e9e9e']
+    domain: ['#1976d2', '#ffb300', '#9e9e9e']
   };
 
   constructor(dataService : DataService) {
     dataService.getContagiToscana().then(arg => {
-      this.multi = dataService.data_for_all_charts['aree'];
+      this.multi = [dataService.data_for_all_charts['toscana'][3],dataService.data_for_all_charts['toscana'][5]];
       this.loaded=true;
     });
   }
