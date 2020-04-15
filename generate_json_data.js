@@ -4,14 +4,21 @@ const loki = require('lokijs');
 let fn = process.argv[2];
 content = fs.readFileSync(fn).toString('utf-8')
 
+
+let fn_decessi = process.argv[3];
+let content_decessi = fs.readFileSync(fn_decessi).toString('utf-8');
+
+console.error("Data contagi file: " + fn);
+console.error("Data decessi/guarigioni file: " + fn_decessi);
+
 //console.log(content)
-lines = content.split("\n")
+lines = content.split("\n");
+lines_decessi = content_decessi.split("\n");
 
 var db = new loki('sandbox.db');
 var records = db.addCollection('records');
 var locations = db.addCollection('locations');;
 var days = [];
-
 
 // FORMAT FOR NG CHARTS
 // [
@@ -61,19 +68,37 @@ var days = [];
 // }
 //
 
-function mkRecord (d,a,c,nc) {
+function mkRecord (d, a, c, nc, dec, gv, gc) {
 	return {
 		"day" : d,
 		"area" : a,
 		"comune" : c,
-		"nuovi_contagi" : Number.parseInt(nc)
+		"nuovi_contagi" : Number.parseInt(nc),
+		"decessi" : dec || 0,
+		"guarigioni_virali" : gv || 0,
+		"guarigioni_cliniche": gc || 0
 	};
+}
+
+function updateDecessiGuarigioni(r, d, gv, gc) {
+	r['decessi'] = d;
+	r['guarigioni_virali'] = gv;
+	r['guarigioni_cliniche'] = gc;
+	records.update(r);
 }
 
 function eq(a) {
 	return function (x) {
 		return x == a;
 	}
+}
+
+function getUnique (arr) {
+	return [...new Set(arr)];
+}
+
+function getArea (obj) {
+	return obj["area"];
 }
 
 var getDaysArray = function(start, end) {
@@ -95,18 +120,47 @@ for (var i = 0; i < lines.length; i++) {
 
 	if(record.length < 4) continue;
 
-	current_day = record[0];
-	area = record[1];
-	comune = record[2];
-	nuovi_contagi = record[3];
+	current_day = record[0].trim();
+	area = record[1].trim();
+	comune = record[2].trim();
+	nuovi_contagi = record[3].trim();
 
-	records.insert(mkRecord(current_day, area, comune, nuovi_contagi));
+	var my_new_rec = mkRecord(current_day, area, comune, nuovi_contagi); 
+	records.insert(my_new_rec);
 
 	if(locations.find({'comune': comune}).length == 0) {
 		locations.insert({'comune': comune, 'area': area});
 	}
 
 	if(!days.find(eq(current_day))) days.push(current_day);
+}
+
+console.error("Added records # ", records.count());	
+
+// Data;Area;Comune;Decessi;Guarigioni Virali;Guarigioni cliniche;;
+
+for (var i = 0; i < lines_decessi.length; i++) {
+	var row = lines_decessi[i].split(",");
+
+	if(row.length < 4) {continue;}
+
+	current_day = row[0].trim();
+	area = row[1].trim();
+	comune = row[2].trim();
+	decessi = (row[3]) ? row[3].trim(): 0;
+	gv = (row[4]) ? row[4].trim(): 0;
+	gc =(row[5]) ? row[5].trim(): 0;
+
+	var rec = records.find({'day': current_day, 'area': area, 'comune' : comune});
+
+	if (rec.length > 0) {
+		updateDecessiGuarigioni(rec, decessi, gv, gc);
+	} else if (rec.length > 1) {
+		throw new Error("REC len > 1: ", rec);
+	} else {
+		var new_rec = mkRecord(current_day, area, comune, 1, decessi, gv, gc); 
+		records.insert(new_rec);
+	}
 }
 
 days.sort();
@@ -132,23 +186,33 @@ console.error("LOG: Added "+cc+" syntetic records");
 console.error("Locations number: " + locations.data.length)
 
 function createSeries(name, query){
+	
 	var increments = [];
 	var totals = [];
 	var tassi = [];
+
+	var decessi = [];
+	var decessi_totali = [];
+	var guariti_clinici = [];
+	var guariti_clinici_totali = [];
+
 	var tot = 0;
+	var acc_decessi = 0;
+	var acc_guariti_clinici = 0;
+	
 	for (var i = 0; i < allDays.length; i++) {
-		// console.log(allDays[i]);
 		var fullQuery = Object.assign({'day': allDays[i] }, query);
-		// console.log(fullQuery);
 		var queryResults = records.find(
 			fullQuery
-			// Object.assign({'day': '2020-03-03'},{'area': 'Elba'})
 		);
-		// console.error("Aggregate "+queryResults.length+" records");
 		contagi = 0;
+		decessi_giornalieri = 0;
+		guariti_clinici_giornalieri = 0;
+
 		for (var j = 0; j < queryResults.length; j++) {
-			contagi = contagi + Number.parseInt(queryResults[j]["nuovi_contagi"]);
-			// console.log(queryResults[j]["nuovi_contagi"]);
+			contagi += Number.parseInt(queryResults[j]["nuovi_contagi"]);
+			decessi_giornalieri += Number.parseInt(queryResults[j]["decessi"]);
+			guariti_clinici_giornalieri += Number.parseInt(queryResults[j]["guarigioni_cliniche"]);
 		}
 		
 		if(totals.length == 0) {
@@ -175,53 +239,51 @@ function createSeries(name, query){
 			'name': allDays[i], 
 			'value': tot
 		});
+
+		acc_decessi += decessi_giornalieri;
+		decessi.push({
+			'name': allDays[i],
+			'value': decessi_giornalieri
+		});
+		decessi_totali.push({
+			'name': allDays[i],
+			'value': acc_decessi
+		});
+
+		acc_guariti_clinici += guariti_clinici_giornalieri;
+		guariti_clinici.push({
+			'name': allDays[i],
+			'value': guariti_clinici_giornalieri
+		});
+		guariti_clinici_totali.push({
+			'name': allDays[i],
+			'value': acc_guariti_clinici
+		});
 	}
 	return [
 		{ "name":  name + " inc.", "series": increments } , 
 		{ "name" : name +  " tot." , "series": totals },
-		{ "name" :  name + " inc%", "series": tassi }
+		{ "name" :  name + " inc%", "series": tassi },
+		{ "name" :  name + " dec", "series": decessi },
+		{ "name" :  name + " dec_tot", "series": decessi_totali },
+		{ "name" :  name + " guar", "series": guariti_clinici },
+		{ "name" :  name + " guar_tot", "series": guariti_clinici_totali }
 	]
 }
-
-function getUnique (arr) {
-	return [...new Set(arr)];
-}
-
-function getArea (obj) {
-	return obj["area"];
-}
-
-// console.log();
-// console.log(createSeries("Toscana", {}));
-// console.log(createSeries("Piana Lucca", {'area': 'Piana di Lucca'}));
-
-//console.log(records.find({'day': '2020-03-03'}).length)
-//console.log(records.find(Object.assign({'day': '2020-03-03'},{'area': 'Michele'})).length)
 
 var serieToscana = createSeries("toscana", {});
 
 var all_data = {
-	'toscana' : [serieToscana[0], serieToscana[1]],
+	'toscana' : [...serieToscana],
 	'aree' : [],
 	'tasso-crescita' : [serieToscana[2]]
 }
 
 var aree = locations.mapReduce(getArea, getUnique);
 for (var i = 0; i < aree.length; i++) {
+	if(aree[i] == 'Toscana') continue;
 	var serie =  createSeries(aree[i], {'area' : aree[i]});
-	//all_data['aree'].push(serie[0]);
 	all_data['aree'].push(serie[1]);
 }
 
 console.log(JSON.stringify(all_data));
-
-function generate_chartjs_data () {
-	console.log(JSON.stringify({
-		"toscana": {
-			"days" : days,
-			"incr" : incr,
-			"tot" : tot,
-			"rate" : rate
-		}
-	}));
-}
