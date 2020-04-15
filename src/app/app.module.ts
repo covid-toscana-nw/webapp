@@ -13,6 +13,7 @@ import { MenuComponent } from './menu/menu.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatListModule} from '@angular/material/list';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -39,6 +40,7 @@ import {DataService} from './data.service';
     MatButtonModule,
     MatButtonToggleModule,
     MatListModule,
+    MatSlideToggleModule,
     MatSidenavModule,
     MatIconModule,
     MatToolbarModule

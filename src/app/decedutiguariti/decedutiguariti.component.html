@@ -5,6 +5,8 @@
     <p class="text-justify"></p>
   </div>
 
+  <mat-slide-toggle (change)="onToggleChange($event)">Totale contagiati</mat-slide-toggle> 
+
     <div class="area-wrapper">
               <ngx-charts-area-chart-stacked id="decedutiguariti" *ngIf="loaded"
                 [scheme]="colorScheme"
