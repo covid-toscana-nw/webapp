@@ -1,4 +1,4 @@
-# for i in ./bollettini/2020-0*.html ; do node parse-bollettino.js $i > parsed/$i.csv ; done
+for i in ./bollettini/2020-0*.html ; do node parse-bollettino.js $i > parsed/$i.csv ; done
 
 cd parsed 
 
