@@ -101,6 +101,10 @@ function getArea (obj) {
 	return obj["area"];
 }
 
+function getComune (obj) {
+	return obj["comune"];
+}
+
 var getDaysArray = function(start, end) {
     for(var arr=[],dt=new Date(start); dt<=end; dt.setDate(dt.getDate()+1)){
     	var nd = new Date(dt);
@@ -135,7 +139,7 @@ for (var i = 0; i < lines.length; i++) {
 	if(!days.find(eq(current_day))) days.push(current_day);
 }
 
-console.error("Added records # ", records.count());	
+console.error("Added records # ", records.count());
 
 // Data;Area;Comune;Decessi;Guarigioni Virali;Guarigioni cliniche;;
 
@@ -195,6 +199,7 @@ function createSeries(name, query){
 	var decessi_totali = [];
 	var guariti_clinici = [];
 	var guariti_clinici_totali = [];
+	var attualmente_positivi = [];
 
 	var tot = 0;
 	var acc_decessi = 0;
@@ -259,31 +264,48 @@ function createSeries(name, query){
 			'name': allDays[i],
 			'value': acc_guariti_clinici
 		});
+
+		attualmente_positivi.push({
+			'name': allDays[i],
+			'value': tot - ( acc_decessi + acc_guariti_clinici )
+		});
 	}
 	return [
-		{ "name":  name + " inc.", "series": increments } , 
-		{ "name" : name +  " tot." , "series": totals },
-		{ "name" :  name + " inc%", "series": tassi },
-		{ "name" :  name + " dec", "series": decessi },
-		{ "name" :  name + " dec_tot", "series": decessi_totali },
-		{ "name" :  name + " guar", "series": guariti_clinici },
-		{ "name" :  name + " guar_tot", "series": guariti_clinici_totali }
+		{ "name":  name + " inc.", "series": increments } , // 0
+		{ "name" : name +  " tot." , "series": totals }, // 1
+		{ "name" :  name + " inc%", "series": tassi }, // 2
+		{ "name" :  name + " dec", "series": decessi }, // 3
+		{ "name" :  name + " dec_tot", "series": decessi_totali }, // 4
+		{ "name" :  name + " guar", "series": guariti_clinici }, // 5
+		{ "name" :  name + " guar_tot", "series": guariti_clinici_totali }, // 6
+		{ "name" :  name + " pos_att", "series": attualmente_positivi } // 7
 	]
 }
 
 var serieToscana = createSeries("toscana", {});
 
 var all_data = {
-	'toscana' : [...serieToscana],
+	'toscana' : [
+		serieToscana[0], serieToscana[1], serieToscana[3], serieToscana[4],
+		serieToscana[5], serieToscana[6], serieToscana[7]
+	],
 	'aree' : [],
+	'comuni': [],
 	'tasso-crescita' : [serieToscana[2]]
 }
 
 var aree = locations.mapReduce(getArea, getUnique);
 for (var i = 0; i < aree.length; i++) {
 	if(aree[i] == 'Toscana') continue;
-	var serie =  createSeries(aree[i], {'area' : aree[i]});
-	all_data['aree'].push(serie[1]);
+	var areaSerie =  createSeries(aree[i], {'area' : aree[i]});
+	all_data['aree'].push(areaSerie[1]);
+}
+
+var comuni = locations.mapReduce(getArea, getUnique);
+for (var i = 0; i < aree.length; i++) {
+	if(comuni[i] == 'Toscana') continue;
+	var comuneSerie =  createSeries(comuni[i], {'comune' : comuni[i]});
+	all_data['comuni'].push(comuneSerie[1]);
 }
 
 console.log(JSON.stringify(all_data));
