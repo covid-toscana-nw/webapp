@@ -6,14 +6,14 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-decedutiguariti',
   templateUrl: './decedutiguariti.component.html',
-  styleUrls: ['./decedutiguariti.component.scss'],
-  providers: [ DataService ]
+  styleUrls: ['./decedutiguariti.component.scss']
 })
 
 export class DecedutiguaritiComponent {
   
   single: any[];
   multi: any[];
+  datasetToscana: any;
   loaded: Boolean = false;
 
   // options
@@ -33,7 +33,11 @@ export class DecedutiguaritiComponent {
 
   constructor(private dataService : DataService) {
     dataService.getContagiToscana().then(arg => {
-      this.multi = [dataService.data_for_all_charts['toscana'][3],dataService.data_for_all_charts['toscana'][5]];
+      this.datasetToscana = dataService.data_for_all_charts['toscana']; 
+      this.multi = [
+          this.datasetToscana["decessi-totali"],
+          this.datasetToscana["guariti-clinici-totali"]
+      ];
       this.loaded=true;
     });
   }
@@ -43,16 +47,20 @@ export class DecedutiguaritiComponent {
   }
 
   onToggleChange(value: MatSlideToggleChange) {
-    this.loaded = false;
+    if(this.loaded == false) { return; }
+
     if(value.checked == true){
-    this.dataService.getContagiToscana().then(arg => {
-      this.multi = [this.dataService.data_for_all_charts['toscana'][3],this.dataService.data_for_all_charts['toscana'][5],
-      this.dataService.data_for_all_charts['toscana'][6]];
-      this.loaded=true;
-    });
+      this.multi = [
+          this.datasetToscana["decessi-totali"],
+          this.datasetToscana["guariti-clinici-totali"],
+          this.datasetToscana["contagi-totali"],
+
+      ];
     } else {
-      this.multi = [this.dataService.data_for_all_charts['toscana'][3],this.dataService.data_for_all_charts['toscana'][5]];
-      this.loaded=true;
+      this.multi = [
+          this.datasetToscana["decessi-totali"],
+          this.datasetToscana["guariti-clinici-totali"]
+      ];
     }
   } 
 }

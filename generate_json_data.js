@@ -271,24 +271,33 @@ function createSeries(name, query){
 		});
 	}
 	return [
-		{ "name":  name + " inc.", "series": increments } , // 0
-		{ "name" : name +  " tot." , "series": totals }, // 1
-		{ "name" :  name + " inc%", "series": tassi }, // 2
-		{ "name" :  name + " dec", "series": decessi }, // 3
-		{ "name" :  name + " dec_tot", "series": decessi_totali }, // 4
-		{ "name" :  name + " guar", "series": guariti_clinici }, // 5
-		{ "name" :  name + " guar_tot", "series": guariti_clinici_totali }, // 6
-		{ "name" :  name + " pos_att", "series": attualmente_positivi } // 7
+		{ "name":  name + "Nuovi Contagi", "series": increments } , // 0
+		{ "name" : name +  "Totale Positivi" , "series": totals }, // 1
+		{ "name" :  name + "Incremento Percentuale", "series": tassi }, // 2
+		{ "name" :  name + "Nuovi Decessi", "series": decessi }, // 3
+		{ "name" :  name + "Totale Decessi", "series": decessi_totali }, // 4
+		{ "name" :  name + "Nuovi Guariti Clinici", "series": guariti_clinici }, // 5
+		{ "name" :  name + "Totale Guariti Clinici", "series": guariti_clinici_totali }, // 6
+		{ "name" :  name + "Attualmente Positivi", "series": attualmente_positivi } // 7
 	]
 }
 
-var serieToscana = createSeries("toscana", {});
+function makeObjectWithSeries (serie) {
+	return {
+		"contagi-giornalieri": serie[0], 
+		"contagi-totali": serie[1], 
+		"decessi-giornalieri": serie[3], 
+		"decessi-totali": serie[4],
+		"guariti-clinici-giornalieri": serie[5], 
+		"guariti-clinici-totali": serie[6], 
+		"positivi-attuali": serie[7]	
+	};
+}
+
+var serieToscana = createSeries("", {});
 
 var all_data = {
-	'toscana' : [
-		serieToscana[0], serieToscana[1], serieToscana[3], serieToscana[4],
-		serieToscana[5], serieToscana[6], serieToscana[7]
-	],
+	'toscana' : makeObjectWithSeries(serieToscana),
 	'aree' : [],
 	'comuni': [],
 	'tasso-crescita' : [serieToscana[2]]
@@ -297,15 +306,15 @@ var all_data = {
 var aree = locations.mapReduce(getArea, getUnique);
 for (var i = 0; i < aree.length; i++) {
 	if(aree[i] == 'Toscana') continue;
-	var areaSerie =  createSeries(aree[i], {'area' : aree[i]});
+	var areaSerie =  createSeries(aree[i]+" ", {'area' : aree[i]});
 	all_data['aree'].push(areaSerie[1]);
 }
 
 var comuni = locations.mapReduce(getArea, getUnique);
 for (var i = 0; i < aree.length; i++) {
 	if(comuni[i] == 'Toscana') continue;
-	var comuneSerie =  createSeries(comuni[i], {'comune' : comuni[i]});
-	all_data['comuni'].push(comuneSerie[1]);
+	var comuneSerie =  createSeries(comuni[i]+" ", {'comune' : comuni[i]});
+	all_data['comuni'].push(comuneSerie);
 }
 
 console.log(JSON.stringify(all_data));

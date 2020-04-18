@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  dataSourceUrl: 'https://raw.githubusercontent.com/michele-carignani/bollettini-toscana-nw-datasets/master/toscana_nw_all_datasets.json'
+  dataSourceUrl: 'http://localhost:8080/toscana_nw_all_datasets.json'
 };
 
 /*

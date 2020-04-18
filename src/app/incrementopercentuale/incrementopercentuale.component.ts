@@ -5,8 +5,7 @@ import { DataService } from '../data.service';
 @Component({
   selector: 'app-incrementopercentuale',
   templateUrl: './incrementopercentuale.component.html',
-  styleUrls: ['./incrementopercentuale.component.scss'],
-  providers: [ DataService ]
+  styleUrls: ['./incrementopercentuale.component.scss']
 })
 
 export class IncrementopercentualeComponent {

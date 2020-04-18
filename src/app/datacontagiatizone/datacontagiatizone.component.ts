@@ -6,8 +6,7 @@ import { DataService } from '../data.service';
 @Component({
   selector: 'app-datacontagiatizone',
   templateUrl: './datacontagiatizone.component.html',
-  styleUrls: ['./datacontagiatizone.component.scss'],
-  providers: [ DataService ]
+  styleUrls: ['./datacontagiatizone.component.scss']
 })
 
 export class DatacontagiatizoneComponent implements OnInit{
