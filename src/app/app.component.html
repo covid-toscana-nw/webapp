@@ -3,6 +3,10 @@
   <mat-toolbar color="primary" class="toolbar mat-elevation-z4">
       <button mat-icon-button (click)="snav.toggle()" ><mat-icon>menu</mat-icon></button>
       <h1 class="app-name">Bollettino Toscana nord ovest</h1>
+
+      <!-- This fills the remaining space of the current row -->
+      <span class="fill-toolbar"></span>
+      <span><a href="#footer">Termini e contatti</a></span>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container" >
@@ -23,35 +27,42 @@
   </mat-sidenav-container>
 
   <!-- Footer -->
-<footer class="page-footer font-small teal" >
+<footer class="page-footer font-small teal" id="footer">
 
     <!-- Footer Text -->
     <div class="container-fluid text-center text-md-left" md-colors="::{background: 'primary'}">
 
         <!-- Grid row-->
-      <div class="w-100 d-flex text-center justify-content-center">
+      <div class="w-100 d-flex">
 
         <!-- Grid column -->
-        <div class="col-md-8 col-12 mt-3">
-          <p style="line-height: 1.7rem">Le informazioni contenute nei grafici si basano sui bollettini pubblicati giornalmente dalla Usl Toscana nord ovest e 
+        <div class="col-md-8 col-12" style="padding:15px">
+          <p style="line-height: 1.7rem">Le informazioni contenute nei grafici si basano sui bollettini pubblicati giornalmente dalla <a href="https://www.uslnordovest.toscana.it/">Usl Toscana Nord Ovest</a> e 
             sono frutto di una elaborazione di terzi a solo scopo divulgativo. 
             Le informazioni su questo sito hanno dunque carattere non ufficiale e non hanno pretesa di completezza. 
             Per i dati ufficiali si rimanda al bollettino emesso giornalmente dalla Usl Toscana nord ovest.</p>
+          <div class="text-center justify-content-center">
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licenza Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Quest'opera è distribuita con Licenza <br/><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>.
+          </div>
         </div>
         <!-- Grid column -->
+
+       <!-- Copyright -->
+    <div class="footer-copyright col-md-4">
+      <h3>Link utili</h3>
+      <ul>
+      <li>Sito ufficiale <a target="_blank" href="https://www.uslnordovest.toscana.it/">USL Toscana Nord Ovest/</a></li>
+      <li>Codice sorgente disponibile su: 
+        <a target="_blank" href="https://github.com/michele-carignani/bollettini-toscana-nord">Github</a>
+      </li>
+      </ul>
+    </div>
+    <!-- Copyright -->
 
       </div>
 
     </div>
     <!-- Footer Text -->
-
-    <hr>
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">Codice sorgente disponibile su: 
-      <a target="_blank" href="https://github.com/michele-carignani/bollettini-toscana-nord">Github</a>
-    </div>
-    <!-- Copyright -->
 
   </footer>
   <!-- Footer -->
