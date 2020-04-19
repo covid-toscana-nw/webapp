@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
 import { ColorHelper } from '@swimlane/ngx-charts';
@@ -9,14 +9,14 @@ import { ColorHelper } from '@swimlane/ngx-charts';
   styleUrls: ['./datacontagiatitoscanano.component.scss']
 })
 
-export class DatacontagiatitoscananoComponent {
+export class DatacontagiatitoscananoComponent implements OnInit{
   multi: any[];
   public chartNames: string[];
   loaded: Boolean = false;
   public colors: ColorHelper;
+  public activeEntries: any[] = [];
 
   // options
-  legend: boolean = true;
   showLabels: boolean = true;
   animations: boolean = true;
   xAxis: boolean = true;
@@ -28,10 +28,10 @@ export class DatacontagiatitoscananoComponent {
   timeline: boolean = true;
 
   colorScheme = {
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+    domain: ['#1976d2', '#ffb300', '#e53935' ]
   };
 
-  constructor(dataService : DataService) {
+  constructor(private dataService : DataService) {
     dataService.getContagiToscana().then(arg => {
       var datasetToscana = dataService.data_for_all_charts['toscana'];
       this.multi = [
@@ -51,8 +51,15 @@ export class DatacontagiatitoscananoComponent {
   }
 
   public ngOnInit(): void {
-  
+
+    this.dataService.getContagiToscana().then(arg =>{
+        // Get chartNames
+        this.chartNames = this.multi.map((d: any) => d.name);
+        // Convert hex colors to ColorHelper for consumption by legend
+        this.colors = new ColorHelper(this.colorScheme, 'ordinal', this.chartNames, this.colorScheme);
+    });
   }
+
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
@@ -63,6 +70,14 @@ export class DatacontagiatitoscananoComponent {
 
   onDeactivate(data): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
+
+  public legendLabelActivate(item: any): void {
+     this.activeEntries = [item];      
+  }
+
+  public legendLabelDeactivate(item: any): void {
+     this.activeEntries = [];
   }
 
 }

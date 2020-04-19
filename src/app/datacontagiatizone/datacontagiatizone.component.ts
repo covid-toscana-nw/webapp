@@ -12,7 +12,6 @@ import { DataService } from '../data.service';
 export class DatacontagiatizoneComponent implements OnInit{
   multi: any[];
   loaded: Boolean = false;
-  dataService : DataService;
   public activeEntries: any[] = [];
   public chartNames: string[];
   public colors: ColorHelper;
@@ -33,8 +32,7 @@ export class DatacontagiatizoneComponent implements OnInit{
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
-  constructor(dataService : DataService) {
-  this.dataService = dataService; 
+  constructor(private dataService : DataService) {
     dataService.getContagiToscana().then(arg => {
       this.multi = dataService.data_for_all_charts['aree'];
       this.loaded=true;

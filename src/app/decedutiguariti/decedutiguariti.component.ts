@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { ColorHelper } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-decedutiguariti',
@@ -9,12 +10,14 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
   styleUrls: ['./decedutiguariti.component.scss']
 })
 
-export class DecedutiguaritiComponent {
+export class DecedutiguaritiComponent implements OnInit{
   
   single: any[];
   multi: any[];
   datasetToscana: any;
   loaded: Boolean = false;
+  public colors: ColorHelper;
+  public chartNames: string[];
 
   // options
   showXAxis = true;
@@ -26,6 +29,7 @@ export class DecedutiguaritiComponent {
   showYAxisLabel = true;
   yAxisLabel = 'Numero';
   animations: boolean = true;
+  public activeEntries: any[] = [];
 
   colorScheme = {
     domain: ['#1976d2', '#ffb300', '#9e9e9e']
@@ -38,7 +42,23 @@ export class DecedutiguaritiComponent {
           this.datasetToscana["decessi-totali"],
           this.datasetToscana["guariti-clinici-totali"]
       ];
+      this.chartNames = this.multi.map((d: any) => d.name);
+      this.colors = new ColorHelper(
+      this.colorScheme, 
+      'ordinal', 
+      this.chartNames, 
+      this.colorScheme
+      );
       this.loaded=true;
+    });
+  }
+
+  public ngOnInit(): void {
+    this.dataService.getContagiToscana().then(arg =>{
+        // Get chartNames
+        this.chartNames = this.multi.map((d: any) => d.name);
+        // Convert hex colors to ColorHelper for consumption by legend
+        this.colors = new ColorHelper(this.colorScheme, 'ordinal', this.chartNames, this.colorScheme);
     });
   }
 
@@ -54,13 +74,22 @@ export class DecedutiguaritiComponent {
           this.datasetToscana["decessi-totali"],
           this.datasetToscana["guariti-clinici-totali"],
           this.datasetToscana["contagi-totali"],
-
       ];
+      this.chartNames = this.multi.map((d: any) => d.name);
     } else {
       this.multi = [
           this.datasetToscana["decessi-totali"],
           this.datasetToscana["guariti-clinici-totali"]
       ];
+      this.chartNames = this.multi.map((d: any) => d.name);
     }
+  }
+
+  public legendLabelActivate(item: any): void {
+     this.activeEntries = [item];      
+  }
+
+  public legendLabelDeactivate(item: any): void {
+     this.activeEntries = [];
   } 
 }

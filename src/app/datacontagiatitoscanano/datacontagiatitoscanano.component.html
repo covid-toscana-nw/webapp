@@ -3,28 +3,32 @@
 
     <p class="text-justify">Totale e incrementi giornalieri di contagi COVID-19, pubblicati da USL Toscana Nord-Ovest.</p>
 
-    <!--ngx-charts-legend class="chart-legend" *ngIf="loaded"
-        [data]="chartNames" 
-        [title]="'Legenda'" 
-        [colors]="colors" >
-    </ngx-charts-legend-->
+    <div class="contagiatiToscanaNOLegend">
+        <ngx-charts-legend class="chart-legend" *ngIf="loaded"
+            [data]="chartNames" 
+            [colors]="colors"
+            (labelActivate)="legendLabelActivate($event)" 
+            (labelDeactivate)="legendLabelDeactivate($event)" >
+        </ngx-charts-legend>
+    </div>
 
     <div class="area-wrapper">
-                <ngx-charts-line-chart id="datacontagiatitoscanano" *ngIf="loaded"
-                [scheme]="colorScheme"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxis]="xAxis"
-                [yAxis]="yAxis"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                [timeline]="timeline"
-                [results]="multi"
-                (select)="onSelect($event)"
-                (activate)="onActivate($event)"
-                (deactivate)="onDeactivate($event)"
-                >
-              </ngx-charts-line-chart>
+        <ngx-charts-line-chart id="datacontagiatitoscanano" *ngIf="loaded"
+            [activeEntries]="activeEntries"
+            [scheme]="colorScheme"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [timeline]="timeline"
+            [results]="multi"
+            (select)="onSelect($event)"
+            (activate)="onActivate($event)"
+            (deactivate)="onDeactivate($event)"
+        >
+        </ngx-charts-line-chart>
     </div>
 
 </div>

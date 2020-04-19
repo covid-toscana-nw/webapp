@@ -1,4 +1,4 @@
-::ng-deep {
+.contagiatiZoneLegend::ng-deep {
 
     .legend-wrap {
         display: contents;
@@ -41,8 +41,4 @@
             fill: #fff!important; 
         }
     }
-}
-
-.area-chart{
-    height: 500px;
 }

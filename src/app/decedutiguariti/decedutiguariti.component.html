@@ -5,22 +5,32 @@
     <p class="text-justify"></p>
   </div>
 
+  <div class="decedutiGuaritiLegend">
+        <ngx-charts-legend class="chart-legend" *ngIf="loaded"
+            [data]="chartNames" 
+            [colors]="colors"
+            (labelActivate)="legendLabelActivate($event)" 
+            (labelDeactivate)="legendLabelDeactivate($event)" >
+        </ngx-charts-legend>
+    </div>
+
   <mat-slide-toggle (change)="onToggleChange($event)">Totale contagiati</mat-slide-toggle> 
 
     <div class="area-wrapper">
-              <ngx-charts-area-chart-stacked id="decedutiguariti" *ngIf="loaded"
-                [scheme]="colorScheme"
-                [results]="multi"
-                [gradient]="gradient"
-                [xAxis]="showXAxis"
-                [yAxis]="showYAxis"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                [animations]="animations"
-                (select)="onSelect($event)">
-              </ngx-charts-area-chart-stacked>
+        <ngx-charts-area-chart-stacked id="decedutiguariti" *ngIf="loaded"
+            [activeEntries]="activeEntries"
+            [scheme]="colorScheme"
+            [results]="multi"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [animations]="animations"
+            (select)="onSelect($event)">
+        </ngx-charts-area-chart-stacked>
     </div>
 
 </div>

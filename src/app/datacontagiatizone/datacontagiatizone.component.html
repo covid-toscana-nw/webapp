@@ -3,6 +3,8 @@
 
         <p class="text-justify">Totale contagi giornalieri divisi per "aree" di gestione, secondo i bollettini della USL Toscana Nord-Ovest.</p>
         
+        
+        <div class="contagiatiZoneLegend">
                 <ngx-charts-legend class="chart-legend" *ngIf="loaded"
                         [data]="chartNames" 
                         [title]="'Zone'" 
@@ -10,23 +12,24 @@
                         (labelActivate)="legendLabelActivate($event)" 
                         (labelDeactivate)="legendLabelDeactivate($event)">
                 </ngx-charts-legend>
-                <div class="area-wrapper">
-                        <ngx-charts-line-chart id="datacontagiatizone" *ngIf="loaded"
-                                [activeEntries]="activeEntries"
-                                [scheme]="colorScheme"
-                                [showXAxisLabel]="showXAxisLabel"
-                                [showYAxisLabel]="showYAxisLabel"
-                                [animations]="animations"
-                                [xAxis]="xAxis"
-                                [yAxis]="yAxis"
-                                [xAxisLabel]="xAxisLabel"
-                                [yAxisLabel]="yAxisLabel"
-                                [timeline]="timeline"
-                                [results]="multi"
-                                (select)="onSelect($event)"
-                                (activate)="onActivate($event)"
-                                (deactivate)="onDeactivate($event)">
-                        </ngx-charts-line-chart>
-                </div>
-        
+        </div>
+                
+        <div class="area-wrapper">
+                <ngx-charts-line-chart id="datacontagiatizone" *ngIf="loaded"
+                        [activeEntries]="activeEntries"
+                        [scheme]="colorScheme"
+                        [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [animations]="animations"
+                        [xAxis]="xAxis"
+                        [yAxis]="yAxis"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        [timeline]="timeline"
+                        [results]="multi"
+                        (select)="onSelect($event)"
+                        (activate)="onActivate($event)"
+                        (deactivate)="onDeactivate($event)">
+                </ngx-charts-line-chart>
+</div>        
 </div>

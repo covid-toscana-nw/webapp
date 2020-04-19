@@ -1,5 +1,34 @@
-::ng-deep .ngx-charts { 
-    text{
-        fill: #fff!important; 
+.contagiatiToscanaNOLegend::ng-deep {
+
+    .legend-wrap {
+        display: contents;
+    }
+
+    .legend-label{
+        line-height: normal !important;
+    }
+
+    .legend-label-text{
+        width: auto !important;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .legend-labels{
+        margin-bottom: 35px !important;
+        width: auto !important;
+        display: block;
+        width: 100%;
+        white-space: unset !important;
+        li {
+            display: inline-block;
+        }
+    }
+
+    .ngx-charts { 
+        text{
+            fill: #fff!important; 
+        }
     }
 }
