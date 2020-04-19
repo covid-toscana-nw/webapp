@@ -1,7 +1,20 @@
 <div class="content" role="main">
-    <h2 class="mat-h2 docs-primary-header">Contagi Toscana nord ovest</h2>
+    <h2 class="mat-h2 docs-primary-header">Numero di contagiati in Toscana nord ovest</h2>
 
-    <p class="text-justify">Totale e incrementi giornalieri di contagi COVID-19, pubblicati da USL Toscana nord ovest.</p>
+    <div class="w-100">
+        <p class="text-justify">In questo grafico vengono conteggiati tutti i casi di contagio da Covid-19 
+            riscontrati sul territorio gestito dalla Usl Toscana nord ovest che riunisce le provincie di Massa Carrara, Lucca, Pisa e Livorno. 
+        </p>
+        <p  class="text-justify">
+            La linea gialla mostra il numero giornaliero di nuovi contagi riscontrati (sia ospedalizzati che in quarantena presso la propria abitazione).
+        </p>
+        <p  class="text-justify">
+            La linea blu mostra invece l'evoluzione nel tempo del numero complessivo dei contagiati che nel territorio interessato ha superato il muro dei 2000 casi. 
+        </p>
+        <p  class="text-justify">
+            La linea rossa tiene conto dei casi "attualmente positivi", sono dunque esclusi dal conteggio sia i clinicamente guariti che i deceduti. 
+        </p>
+    </div>
 
     <div class="contagiatiToscanaLegend">
         <ngx-charts-legend class="chart-legend" *ngIf="loaded"
