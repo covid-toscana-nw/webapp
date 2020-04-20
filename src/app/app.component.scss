@@ -34,3 +34,33 @@ h1.app-name {
 .page-footer{
   background: mat-color($app-accent, 500);
 }
+
+.intro {
+  margin-top: 60px;
+  padding-top: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: mat-color($app-primary, 600);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;
+  flex-wrap: wrap;
+  color: black;
+}
+
+.intro-text {
+  max-width: 1300px;
+}
+
+::ng-deep .ngx-charts { 
+    text{
+        fill: mat-color($app-accent, 500) !important;
+    }
+
+    .gridline-path{
+      stroke: mat-color($app-accent, 500) !important;
+    }
+}

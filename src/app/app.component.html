@@ -12,6 +12,23 @@
 
     <mat-sidenav-content>
       <div class="events">
+          <div class="w-100 intro">
+            <div class="intro-text text-md-center mb-0">
+            <h3>In questo sito è possibile trovare una serie di grafici realizzati allo scopo di comprendere meglio l'evoluzione nel lungo 
+            periodo della situazione legata al Covid-19 nell'area della Toscana nord ovest che riunisce le provincie di Massa Carrara, Lucca, Pisa e Livorno.
+            </h3>
+
+            <h3>Nello specifico, nel sito sono rappresentanti graficamente il numero totale dei contagiati, il numero giornaliero di nuovi contagiati, i guariti e i deceduti.
+            Inoltre, è possibile osservare una suddivisione per zone del numero di contagi. 
+            </h3>
+
+            <h3>Questo sito ha il solo scopo della divulgazione ed è stato realizzato senza fini di lucro. Le informazioni qui contenute si basano sui bollettini 
+            pubblicati giornalmente dalla Usl Toscana nord ovest e sono frutto di una elaborazione di terzi a solo scopo divulgativo. Le informazioni su questo sito hanno
+            dunque carattere "non ufficiale" e non hanno pretesa di completezza. Per i dati ufficiali si rimanda al bollettino emesso 
+            giornalmente dalla Usl Toscana nord ovest (Clicca qui: <a target="_blank" href="https://www.uslnordovest.toscana.it/notizie/covid-19">USL Toscana nord ovest</a>). 
+            </h3>
+            </div>
+        </div>
         <app-datacontagiatitoscanano></app-datacontagiatitoscanano>
         <app-decedutiguariti></app-decedutiguariti>
         <app-incrementopercentuale></app-incrementopercentuale>
@@ -22,38 +39,29 @@
 
   </mat-sidenav-container>
 
-  <!-- Footer -->
 <footer class="page-footer font-small teal" >
 
-    <!-- Footer Text -->
     <div class="container-fluid text-center text-md-left" md-colors="::{background: 'primary'}">
 
-        <!-- Grid row-->
       <div class="w-100 d-flex text-center justify-content-center">
 
-        <!-- Grid column -->
         <div class="col-md-8 col-12 mt-3">
           <p style="line-height: 1.7rem">Le informazioni contenute nei grafici si basano sui bollettini pubblicati giornalmente dalla Usl Toscana nord ovest e 
             sono frutto di una elaborazione di terzi a solo scopo divulgativo. 
             Le informazioni su questo sito hanno dunque carattere non ufficiale e non hanno pretesa di completezza. 
             Per i dati ufficiali si rimanda al bollettino emesso giornalmente dalla Usl Toscana nord ovest.</p>
         </div>
-        <!-- Grid column -->
 
       </div>
 
     </div>
-    <!-- Footer Text -->
 
     <hr>
 
-    <!-- Copyright -->
     <div class="footer-copyright text-center py-3">Codice sorgente disponibile su: 
       <a target="_blank" href="https://github.com/michele-carignani/bollettini-toscana-nord">Github</a>
     </div>
-    <!-- Copyright -->
 
   </footer>
-  <!-- Footer -->
 
 </section>

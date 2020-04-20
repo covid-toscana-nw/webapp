@@ -35,10 +35,4 @@
     @media (max-width: 500px) {
         .legend-labels li { width: 45%; } /* On small screens, show one logo per row */
     }
-
-    .ngx-charts { 
-        text{
-            fill: #fff!important; 
-        }
-    }
 }
