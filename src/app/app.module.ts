@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { DatacontagiatizoneComponent } from './datacontagiatizone/datacontagiatizone.component';
-import { CartedatacontagiatizoneComponent } from './cartedatacontagiatizone/cartedatacontagiatizone.component';
 import { DatacontagiatitoscananoComponent } from './datacontagiatitoscanano/datacontagiatitoscanano.component';
 import { IncrementopercentualeComponent } from './incrementopercentuale/incrementopercentuale.component';
 import { DecedutiguaritiComponent } from './decedutiguariti/decedutiguariti.component';
@@ -25,7 +24,6 @@ import {DataService} from './data.service';
   declarations: [
     AppComponent,
     DatacontagiatizoneComponent,
-    CartedatacontagiatizoneComponent,
     DatacontagiatitoscananoComponent,
     IncrementopercentualeComponent,
     DecedutiguaritiComponent,
