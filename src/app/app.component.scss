@@ -53,6 +53,11 @@ h1.app-name {
 
 .intro-text {
   max-width: 1300px;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .intro-text { text-align: justify; }
 }
 
 ::ng-deep .ngx-charts { 
