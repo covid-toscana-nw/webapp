@@ -220,14 +220,14 @@ function createSeries(name, query){
 			guariti_clinici_giornalieri += Number.parseInt(queryResults[j]["guarigioni_cliniche"]);
 		}
 		
-		if(totals.length == 0) {
+		if(attualmente_positivi.length == 0) {
 			tassi.push({
 				'name': allDays[i],
 				'value': 100
 			});
 		} else {
-			var previous_tot = totals.slice(-1)[0].value;
-			var incr_perc = ((contagi * 100) / previous_tot).toFixed(2);
+			var previous_att_pos = attualmente_positivi.slice(-1)[0].value;
+			var incr_perc = ((contagi * 100) / previous_att_pos).toFixed(2);
 			tassi.push({
 				'name': allDays[i],
 				'value': (incr_perc < 100) ? incr_perc : 100
