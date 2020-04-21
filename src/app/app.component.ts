@@ -15,6 +15,8 @@ import {MediaMatcher} from '@angular/cdk/layout';
 export class AppComponent implements OnDestroy{
   mobileQuery: MediaQueryList;
 
+  otherTheme: boolean = false;
+
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
   fillerContent = Array.from({length: 50}, () =>
@@ -38,6 +40,10 @@ export class AppComponent implements OnDestroy{
 
   scrollToTop(){
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+  }
+
+  changeTheme(){
+    this.otherTheme = !this.otherTheme;
   }
 
 }

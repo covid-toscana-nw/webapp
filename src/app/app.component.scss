@@ -40,7 +40,7 @@ h1.app-name {
   padding-top: 30px;
   padding-left: 16px;
   padding-right: 16px;
-  background-color: mat-color($app-primary, 600);
+  //background-color: mat-color($app-primary, 600);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,7 +48,6 @@ h1.app-name {
   -webkit-justify-content: center;
   -webkit-align-items: center;
   flex-wrap: wrap;
-  color: black;
 }
 
 .intro-text {

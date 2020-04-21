@@ -1,8 +1,12 @@
 
-<section class="mat-typography">
+<div [class.alternative]="otherTheme">
+  <section class="mat-typography">
   <mat-toolbar color="primary" class="toolbar mat-elevation-z4">
       <button mat-icon-button (click)="snav.toggle()" ><mat-icon>menu</mat-icon></button>
       <h1 class="app-name">Covid-19 Toscana nord ovest</h1>
+      <div class="w-100">
+        <button class="float-right" (click)="changeTheme()" mat-icon-button><mat-icon>brightness_medium</mat-icon></button>
+      </div>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container" >
@@ -12,7 +16,7 @@
 
     <mat-sidenav-content>
       <div class="events">
-          <div class="w-100 intro">
+          <section class="w-100 intro" color="primary">
             <div class="intro-text mb-0">
             <h3>In questo sito è possibile trovare una serie di grafici realizzati allo scopo di comprendere meglio l'evoluzione nel lungo 
             periodo della situazione legata al Covid-19 nell'area della Toscana nord ovest che riunisce le provincie di Massa Carrara, Lucca, Pisa e Livorno.
@@ -28,7 +32,7 @@
             giornalmente dalla Usl Toscana nord ovest (Clicca qui: <a target="_blank" href="https://www.uslnordovest.toscana.it/notizie/covid-19">USL Toscana nord ovest</a>). 
             </h3>
             </div>
-        </div>
+        </section>
         <app-datacontagiatitoscanano></app-datacontagiatitoscanano>
         <app-decedutiguariti></app-decedutiguariti>
         <app-incrementopercentuale></app-incrementopercentuale>
@@ -64,4 +68,5 @@
 
   </footer>
 
-</section>
+  </section>
+</div>
