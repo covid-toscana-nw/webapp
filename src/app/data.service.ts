@@ -5,7 +5,7 @@ import {environment} from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-
+ 
 export class DataService {
 
   data_for_all_charts : any[];
