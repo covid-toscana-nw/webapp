@@ -40,8 +40,8 @@ h1.app-name {
   padding-top: 30px;
   padding-left: 16px;
   padding-right: 16px;
-  background-color: mat-color($app-primary, 600);
-  color: black;
+  background-color: mat-color($app-primary, 900);
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,6 +49,7 @@ h1.app-name {
   -webkit-justify-content: center;
   -webkit-align-items: center;
   flex-wrap: wrap;
+  border-bottom: 1px solid #ffb300;
 }
 
 .alternative .intro {
@@ -61,11 +62,6 @@ h1.app-name {
 
 .intro-text {
   max-width: 1300px;
-  text-align: center;
-}
-
-@media (max-width: 500px) {
-  .intro-text { text-align: justify; }
 }
 
 ::ng-deep .ngx-charts { 
