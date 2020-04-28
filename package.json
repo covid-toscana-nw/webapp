@@ -4,14 +4,14 @@
   "description": "Analizza i bollettini della USL Toscana Nord per avere dati strutturati",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/michele-carignani/bollettini-toscana-nord.git"
+    "url": "git+https://github.com/covid-toscana-nw/webapp.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/michele-carignani/bollettini-toscana-nord/issues"
+    "url": "https://github.com/covid-toscana-nw/webapp/issues"
   },
-  "homepage": "https://github.com/michele-carignani/bollettini-toscana-nord#readme",
+  "homepage": "https://github.com/covid-toscana-nw/webapp#readme",
   "scripts": {
     "ng": "npx ng",
     "start": "npx ng serve",
