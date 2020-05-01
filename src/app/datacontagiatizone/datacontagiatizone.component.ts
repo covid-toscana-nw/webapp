@@ -29,7 +29,7 @@ export class DatacontagiatizoneComponent implements OnInit{
   timeline: boolean = true;
 
   colorScheme = {
-    domain: ['#1976d2', '#ffb300', '#e53935', '#43a047', '#0097a7', '#8e24aa']
+    domain: ['#0388f8', '#21c51d', '#fdb22b', '#f882a9', '#e33b3b', '#f67050', '#05aea0', '#da1fcb', '#b36cf2', '#d6d80c']
   };
 
   constructor(private dataService : DataService) {

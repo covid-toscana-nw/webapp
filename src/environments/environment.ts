@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  dataSourceUrl: 'http://localhost:8080/toscana_nw_all_datasets.json'
+  dataSourceUrl: 'https://raw.githubusercontent.com/covid-toscana-nw/dataset/master/toscana_nw_all_datasets.json'
 };
 
 /*

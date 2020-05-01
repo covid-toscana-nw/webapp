@@ -38,7 +38,7 @@
     "bootstrap": "^4.4.1",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
-    "http-server": "^0.12.1",
+    "http-server": "^0.12.3",
     "lokijs": "^1.5.8",
     "rxjs": "~6.5.5",
     "tslib": "^1.10.0",
