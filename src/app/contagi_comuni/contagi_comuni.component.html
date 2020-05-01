@@ -1,0 +1,37 @@
+<div class="content" role="main">
+        <div class="w-100">
+                <h2 class="mat-h2">Contagi per comune</h2>
+                <p class="text-justify">
+                        In questo grafico viene scorporato il dato del grafico 1 andando a suddividere il numero dei contagiati nei vari comuni di gestione della Usl Toscana nord ovest in cui si sono verificati.
+                </p>
+        </div>
+        
+        <div class="contagiComuniLegend">
+                <ngx-charts-legend class="chart-legend" *ngIf="loaded"
+                        [data]="chartNames" 
+                        [title]="chartTitle" 
+                        [colors]="colors" 
+                        (labelActivate)="legendLabelActivate($event)" 
+                        (labelDeactivate)="legendLabelDeactivate($event)">
+                </ngx-charts-legend>
+        </div>
+                
+        <div class="area-wrapper">
+                <ngx-charts-line-chart id="contagi_comuni" *ngIf="loaded"
+                        [activeEntries]="activeEntries"
+                        [scheme]="colorScheme"
+                        [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [animations]="animations"
+                        [xAxis]="xAxis"
+                        [yAxis]="yAxis"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        [timeline]="timeline"
+                        [results]="multi"
+                        (select)="onSelect($event)"
+                        (activate)="onActivate($event)"
+                        (deactivate)="onDeactivate($event)">
+                </ngx-charts-line-chart>
+</div>        
+</div>

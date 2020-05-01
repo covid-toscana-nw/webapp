@@ -309,12 +309,14 @@ for (var i = 0; i < aree.length; i++) {
 	var areaSerie =  createSeries(aree[i]+" ", {'area' : aree[i]});
 	all_data['aree'].push(areaSerie[1]);
 }
+console.error("Aree:", aree.length)
 
-var comuni = locations.mapReduce(getArea, getUnique);
-for (var i = 0; i < aree.length; i++) {
+var comuni = locations.mapReduce(getComune, getUnique);
+for (var i = 0; i < comuni.length; i++) {
 	if(comuni[i] == 'Toscana') continue;
 	var comuneSerie =  createSeries(comuni[i]+" ", {'comune' : comuni[i]});
 	all_data['comuni'].push(comuneSerie);
 }
+console.error("Comuni:", comuni.length)
 
 console.log(JSON.stringify(all_data));
