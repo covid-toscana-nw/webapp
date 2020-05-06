@@ -1,18 +1,27 @@
 
-DIR=${1:-../bollettini-toscana-nw-datasets}
+DIR=${1:-../dataset}
 BOLLETTINI="./bollettini/2020-0*.html"
 
-for i in ./bollettini/2020-0*.html ; do 
-	outfile="$(basename $i| cut -d'.' -f1)"
-	node parse-bollettino.js $i > "$DIR"/contagi/contagi_"$outfile".csv ;
-done
+parse_bollettini="No"
+
+if [ "$parse_bollettini" == "Yes" ] ; then
+	for i in ./bollettini/2020-04-{28,29,30}.html ; do 
+		outfile="$(basename $i| cut -d'.' -f1)"
+		node parse-bollettino.js $i > "$DIR"/contagi/contagi_"$outfile".csv ;
+	done
+	exit 0
+fi
 
 cd $DIR/contagi
-cat toscana_nw_contagi.csv contagi_2020-04-* > contagi_all.csv
+cat \
+	contagi_2020-02-*.csv \
+	contagi_2020-03-*.csv \
+	contagi_2020-04-* \
+	contagi_2020-05-* > contagi_all.csv
 cd -
 
 cd $DIR/decessi_e_guarigioni
-cat toscana_nw_deceduti_guariti.csv decessi_e_guarigioni_2020_04_18.csv > decessi_e_guarigioni_all.csv
+cat decessi_e_guarigioni_2020_0*.csv > decessi_e_guarigioni_all.csv
 cd -
 
 node generate_json_data.js \
