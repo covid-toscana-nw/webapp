@@ -73,7 +73,7 @@ export class DecedutiguaritiComponent implements OnInit{
       this.multi = [
           this.datasetToscana["decessi-totali"],
           this.datasetToscana["guariti-clinici-totali"],
-          this.datasetToscana["contagi-totali"],
+          this.datasetToscana["positivi-attuali"],
       ];
       this.chartNames = this.multi.map((d: any) => d.name);
     } else {
