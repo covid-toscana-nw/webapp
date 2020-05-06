@@ -10,6 +10,7 @@ import { DatacontagiatitoscananoComponent } from './datacontagiatitoscanano/data
 import { IncrementopercentualeComponent } from './incrementopercentuale/incrementopercentuale.component';
 import { DecedutiguaritiComponent } from './decedutiguariti/decedutiguariti.component';
 import { ContagiComuniComponent } from './contagi_comuni/contagi_comuni.component';
+import { ContagiProvincieComponent } from './contagi_provincie/contagi_provincie.component';
 import { MenuComponent } from './menu/menu.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -29,6 +30,7 @@ import {DataService} from './data.service';
     IncrementopercentualeComponent,
     DecedutiguaritiComponent,
     ContagiComuniComponent,
+    ContagiProvincieComponent,
     MenuComponent
   ],
 

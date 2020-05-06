@@ -10,10 +10,15 @@ function getProvinciaFromArea(area) {
 		"Valle del Serchio": "Lucca",
 		"Versilia": "Lucca",
 		"Zona Livornese": "Livorno",
-		"Zona Pisana": "Pisa"
+		"Zona Pisana": "Pisa",
+		"Toscana" : "Toscana"
 	};
 
-	return provincie[area];
+	var prov = provincie[area];
+	if (!prov){
+		console.error("No provincia: ", area, prov);
+	}
+	return prov;
 }
 
 function mkRecord (d, a, c, nc, dec, gv, gc) {
@@ -35,9 +40,26 @@ function parseContagiLine(line){
 
 	if(split.length < 4) return null;
 
+    var area = split[1].trim();
+
+    if (area == "Bassa val di Cecina Val di Cornia") {
+    	area = "Bassa Val di Cecina Val di Cornia";
+    	console.error("WARNING: ","Bassa val di Cecina Val di Cornia", split[0].trim());
+    }
+
+    if (area == "Alta val di Cecina Val d'Era") {
+    	area = "Alta Val di Cecina Val d'Era";
+    	console.error("WARNING: ","Alta val di Cecina Val d'Era", split[0].trim());
+    }
+
+    if (area == "Alta Val di Cecina Val d'era") {
+    	area = "Alta Val di Cecina Val d'Era";
+    	console.error("WARNING: ","Alta val di Cecina Val d'era", split[0].trim());
+    }
+
 	return mkRecord(
 		split[0].trim(), 
-		split[1].trim(), 
+		area, 
 		split[2].trim(), 
 		split[3].trim()
 	);
@@ -100,11 +122,6 @@ function createSeries(name, query, allDays, records){
 		}
 
 		for (var j = 0; j < queryResults.length; j++) {
-			if(name == "" && allDays[i] == "2020-03-03"){
-				console.error("Day ", allDays[i], " contagi ", queryResults[j]["nuovi_contagi"], " a" ,
-					queryResults[j]["comune"]);
-			}
-
 			contagi += Number.parseInt(queryResults[j]["nuovi_contagi"]);
 			decessi_giornalieri += Number.parseInt(queryResults[j]["decessi"]);
 			guariti_clinici_giornalieri += Number.parseInt(queryResults[j]["guarigioni_cliniche"]);
