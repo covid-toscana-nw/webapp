@@ -27,7 +27,7 @@ export class ContagiProvincieComponent implements OnInit{
   xAxisLabel: string = 'Data';
   yAxisLabel: string = 'Contagiati';
   timeline: boolean = true;
-  chartTitle : string = 'Contagi Provincie';
+  chartTitle : string = 'Contagi Province';
 
   colorScheme = {
     domain: ['#1976d2', '#ffb300', '#e53935', '#43a047', '#0097a7', '#8e24aa']
